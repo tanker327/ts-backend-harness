@@ -1,2 +1,8 @@
-// Layer 6: Hono route handlers
-// Re-export route modules here as the app grows.
+import { OpenAPIHono } from "@hono/zod-openapi";
+import { registerHealthRoutes } from "./health.ts";
+
+export function createRouter(): OpenAPIHono {
+  const router = new OpenAPIHono();
+  registerHealthRoutes(router);
+  return router;
+}
