@@ -1,0 +1,45 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bunx biome format --write $CLAUDE_FILE_PATH 2>/dev/null; LINT_OUTPUT=$(bunx biome check $CLAUDE_FILE_PATH 2>&1); if [ -n \"$LINT_OUTPUT\" ]; then echo '{\"decision\": \"allow\", \"hookSpecificOutput\": {\"additionalContext\": \"Biome violations found:\\n'\"$LINT_OUTPUT\"'\"}}'; else echo '{\"decision\": \"allow\"}'; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -qE '(biome\\.json|tsconfig\\.json|lefthook\\.yml)'; then echo '{\"decision\": \"block\", \"reason\": \"Modifying linter/build config is not allowed. Fix the code instead.\"}'; else echo '{\"decision\": \"allow\"}'; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "COMMAND=$(echo \"$(cat)\" | grep -oE '\"command\"\\s*:\\s*\"[^\"]*\"' | head -1 | sed 's/.*: *\"//;s/\"//'); if echo \"$COMMAND\" | grep -q '\\-\\-no-verify'; then echo '{\"decision\": \"block\", \"reason\": \"--no-verify is not allowed. Fix the issues reported by pre-commit hooks.\"}'; else echo '{\"decision\": \"allow\"}'; fi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -z \"$STOP_HOOK_ACTIVE\" ]; then export STOP_HOOK_ACTIVE=1; RESULT=$(bun run test 2>&1); EXIT_CODE=$?; if [ $EXIT_CODE -ne 0 ]; then echo \"{\\\"decision\\\": \\\"block\\\", \\\"reason\\\": \\\"Tests failed. Fix before stopping:\\n$RESULT\\\"}\"; else echo '{\"decision\": \"allow\"}'; fi; else echo '{\"decision\": \"allow\"}'; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

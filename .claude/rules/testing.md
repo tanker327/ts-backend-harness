@@ -1,0 +1,13 @@
+# Testing Strategy
+
+| Layer | Tool | Scope |
+|---|---|---|
+| Unit | Vitest | Schemas, utils, business logic in services |
+| Integration | Vitest | Service + repo layer with test DB |
+| Endpoint | Hurl | Live API contracts, auth flows, request chaining |
+| Architecture | Vitest | Layer dependency direction validation |
+| Coverage | @vitest/coverage-v8 | Unit + integration only |
+
+- Every new route needs at least one Hurl endpoint test.
+- Every new service function needs a unit test.
+- Every agent mistake -> add a test to prevent recurrence.
