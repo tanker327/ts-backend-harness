@@ -1,0 +1,11 @@
+{
+  "last_scanned": "2026-03-22",
+  "layers": {
+    "types": { "coverage": 0, "lint_violations": 0, "notes": "Placeholder layer" },
+    "config": { "coverage": 0, "lint_violations": 0, "notes": "env.ts, db.ts, queue.ts" },
+    "repos": { "coverage": 0, "lint_violations": 0, "notes": "schema.ts defined" },
+    "services": { "coverage": 0, "lint_violations": 0, "notes": "ai.ts stub" },
+    "providers": { "coverage": 0, "lint_violations": 0, "notes": "auth.ts, logger.ts" },
+    "routes": { "coverage": 0, "lint_violations": 0, "notes": "health.ts with OpenAPI" }
+  }
+}

@@ -8,6 +8,9 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   BETTER_AUTH_SECRET: z.string().min(32),
   BETTER_AUTH_URL: z.url().default("http://localhost:3000"),
+  REDIS_HOST: z.string().default("localhost"),
+  REDIS_PORT: z.coerce.number().default(6379),
+  ANTHROPIC_API_KEY: z.string().optional(),
 });
 
 export const env = envSchema.parse(process.env);

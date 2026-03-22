@@ -1,12 +1,12 @@
 import { swaggerUI } from "@hono/swagger-ui";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { logger } from "hono/logger";
 import { auth } from "./providers/auth.ts";
+import { honoLogger } from "./providers/logger.ts";
 import { createRouter } from "./routes/index.ts";
 
 const app = new OpenAPIHono();
 
-app.use("*", logger());
+app.use("*", honoLogger());
 
 // Better Auth handler
 app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
