@@ -40,10 +40,12 @@
 - Database patterns: .claude/rules/database.md
 - API design: .claude/rules/api-design.md
 - Testing strategy: .claude/rules/testing.md
+- Commit messages: .claude/rules/commit-message.md
 
 ## Session Startup (run every new session)
-1. `git log --oneline -20` — review recent changes
-2. `cat progress.json` — check task status
-3. Pick highest priority "pending" task
-4. `bun run dev` — verify server starts
-5. Begin work on selected task
+1. `git pull` — pull latest from remote before starting
+2. `git log --oneline -20` — review recent changes
+3. `cat progress.json` — check task status
+4. Pick highest priority "pending" task
+5. `bun run dev` — verify server starts
+6. Begin work on selected task
