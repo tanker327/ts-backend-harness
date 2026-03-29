@@ -14,28 +14,22 @@ A TypeScript backend starter template built for **AI Agent-first development** w
 | Queue | [BullMQ](https://bullmq.io) + Redis |
 | Logging | [Pino](https://getpino.io) + hono-pino |
 | AI | [Anthropic SDK](https://docs.anthropic.com/en/api) |
-| Testing | [Vitest](https://vitest.dev) + [Hurl](https://hurl.dev) |
+| Testing | [Vitest](https://vitest.dev) |
 | Linting | [Biome](https://biomejs.dev) |
 | Git Hooks | [Lefthook](https://github.com/evilmartians/lefthook) |
 
 ## Quick Start
 
 ```bash
-# Install dependencies
+# One-command bootstrap (installs deps, creates .env, pushes schema, starts Redis, runs tests)
+bun run init
+
+# Or manually:
 bun install
-
-# Copy env file and configure
-cp .env.example .env
-
-# Start Redis (required for BullMQ)
-docker compose up -d
-
-# Run database migrations
-bunx drizzle-kit generate
-bunx drizzle-kit migrate
-
-# Start dev server
-bun run dev
+cp .env.example .env        # then edit secrets
+docker compose up -d         # start Redis (required for BullMQ)
+bun run db:migrate           # generate and apply database migrations
+bun run dev                  # start dev server with hot reload
 # Server: http://localhost:3000
 # Swagger UI: http://localhost:3000/docs
 # OpenAPI spec: http://localhost:3000/openapi.json
@@ -43,14 +37,18 @@ bun run dev
 
 ## Scripts
 
-```bash
-bun run dev           # Start dev server with watch mode
-bun run test          # Run all tests
-bun run test:watch    # Run tests in watch mode
-bun run test:coverage # Run tests with coverage
-bun run lint          # Lint with Biome
-bun run format        # Format with Biome
-```
+| Command | Description |
+|---|---|
+| `bun run dev` | Start dev server with watch mode |
+| `bun run test` | Run all tests |
+| `bun run test:watch` | Run tests in watch mode |
+| `bun run test:coverage` | Run tests with coverage |
+| `bun run lint` | Lint with Biome |
+| `bun run format` | Auto-format with Biome |
+| `bun run db:migrate` | Generate and apply Drizzle migrations |
+| `bun run init` | Full project bootstrap |
+| `bun run quality` | Update per-layer quality scores |
+| `bun run harness-metrics` | Update harness effectiveness metrics |
 
 ## Architecture
 
@@ -95,7 +93,7 @@ This template is designed around three pillars that keep AI agents on track:
 |------|-------|-----------|
 | 1 | Milliseconds | Claude Code PostToolUse Hook (auto biome on file write) |
 | 2 | Seconds | Lefthook pre-commit (biome + tsc) |
-| 3 | Minutes | Vitest + Hurl full suite |
+| 3 | Minutes | Vitest full suite |
 | 4 | Hours | Human PR review |
 
 Claude Code hooks also **block** modifications to config files (`biome.json`, `tsconfig.json`, `lefthook.yml`) and usage of `--no-verify`.
@@ -110,18 +108,18 @@ Claude Code hooks also **block** modifications to config files (`biome.json`, `t
 ├── docs/
 │   ├── architecture.md       # Layer diagram + dependency rules
 │   ├── adr/                  # Architecture Decision Records
-│   ├── quality/scores.json   # Per-layer quality tracking
-│   └── plans/                # Active / completed / debt plans
+│   └── quality/              # Quality scores + harness metrics
 ├── src/                      # Six-layer source code
 ├── tests/
 │   ├── unit/                 # Vitest unit tests
 │   ├── integration/          # Vitest integration tests
 │   ├── architecture/         # Structural constraint tests
-│   └── e2e/                  # Hurl endpoint tests
+│   └── e2e/                  # E2E endpoint tests (app.request)
+├── scripts/                  # Bootstrap, migration, quality scripts
+├── progress/                 # Task tracking + feature plans
 ├── data/                     # Local SQLite database (gitignored)
 ├── docker-compose.yml        # Redis for BullMQ
 ├── drizzle.config.ts         # Drizzle Kit migration config
-├── progress.json             # Task tracking
 └── biome.json / tsconfig.json / lefthook.yml
 ```
 
@@ -141,13 +139,15 @@ Claude Code hooks also **block** modifications to config files (`biome.json`, `t
 | 001 | [Adopt Harness Engineering](docs/adr/001-adopt-harness-engineering.md) |
 | 002 | [Env vars validated via Zod](docs/adr/002-env-vars-validated-via-zod.md) |
 | 003 | [userId extracted from JWT only](docs/adr/003-userid-from-jwt-only.md) |
+| 004 | [E2E tests via app.request](docs/adr/004-e2e-tests-via-app-request.md) |
+| 005 | [Progress tracking with sprint archive](docs/adr/005-progress-tracking-with-sprint-archive.md) |
+| 006 | [Worktree isolation for parallel tasks](docs/adr/006-worktree-isolation-for-parallel-tasks.md) |
 
 ## Prerequisites
 
 - [Bun](https://bun.sh) >= 1.0
 - [Docker](https://www.docker.com) (for Redis)
 - [Lefthook](https://github.com/evilmartians/lefthook) (`brew install lefthook`)
-- [Hurl](https://hurl.dev) (`brew install hurl`) — for e2e tests
 
 ## License
 
