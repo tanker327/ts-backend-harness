@@ -1,0 +1,135 @@
+{
+  "last_updated": "2026-03-29",
+  "sprint": "v0.2.0",
+  "metrics": {
+    "total_tasks": 14,
+    "completed_tasks": 12,
+    "abandoned_tasks": 0,
+    "task_success_rate": 86,
+    "first_pass_ci_success": {
+      "passed": 12,
+      "total": 12,
+      "rate": 100
+    },
+    "rework_commits": {
+      "fix_commits": 0,
+      "task_commits": 12,
+      "rate": 0
+    },
+    "avg_task_duration_days": 1
+  },
+  "per_task": [
+    {
+      "id": "TASK-006",
+      "title": "Fix/verify test suite passes",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-007",
+      "title": "Add CI/CD pipeline (GitHub Actions)",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-008",
+      "title": "Plan sprint v0.2.0 with gap analysis tasks",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-009",
+      "title": "Add scripts/init.sh startup script",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-010",
+      "title": "Automate quality scores measurement",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-011",
+      "title": "Add auth e2e tests",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-012",
+      "title": "Add service unit tests (ai.ts)",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-013",
+      "title": "Document retry/loop bounding policy",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-014",
+      "title": "Add author_accounts CRUD (full 6-layer flow)",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-015",
+      "title": "Adopt worktree isolation model (ADR)",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-016",
+      "title": "Add context management rules",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-017",
+      "title": "Add BullMQ worker smoke test",
+      "status": "completed",
+      "duration_days": 1,
+      "fix_commits_after": 0,
+      "first_pass_ci": true
+    },
+    {
+      "id": "TASK-018",
+      "title": "Set up harness effectiveness metrics",
+      "status": "in_progress",
+      "duration_days": null,
+      "fix_commits_after": 0,
+      "first_pass_ci": null
+    },
+    {
+      "id": "TASK-019",
+      "title": "Add contents CRUD (full 6-layer flow)",
+      "status": "pending",
+      "duration_days": null,
+      "fix_commits_after": 0,
+      "first_pass_ci": null
+    }
+  ]
+}
