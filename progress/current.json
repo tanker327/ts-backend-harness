@@ -51,9 +51,12 @@
     {
       "id": "TASK-005",
       "title": "Create project-level /commit skill",
-      "status": "pending",
+      "status": "completed",
       "priority": 1,
       "type": "arch",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "cc66c37",
       "notes": "Replace built-in /commit with project-specific skill. Runs /verify, auto-generates commit message per commit-message.md rules, refs active TASK-XXX. Plan: progress/features/commit-skill.md"
     }
   ],
