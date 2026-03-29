@@ -121,11 +121,14 @@
     {
       "id": "TASK-017",
       "title": "Add BullMQ worker smoke test",
-      "status": "pending",
+      "status": "completed",
       "priority": 12,
       "type": "test",
       "depends_on": ["TASK-014"],
-      "notes": "Redis + BullMQ configured but no workers exist. Defer until a feature needs background jobs. Create minimal worker + test when TASK-014 introduces queue usage."
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "a5fdbda",
+      "notes": "Created minimal worker src/services/worker.ts (ping job handler) + integration test tests/integration/worker.test.ts (2 tests: ping success, unknown type). Uses QueueEvents for job completion tracking."
     },
     {
       "id": "TASK-018",
