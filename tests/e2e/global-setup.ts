@@ -12,13 +12,10 @@ const TEST_DB_PATH = "./data/test.db";
 
 /** Push schema from src/repos/schema.ts into the test DB via drizzle-kit. */
 export function setup() {
-  execSync("bunx drizzle-kit push --force", {
-    env: {
-      ...process.env,
-      DATABASE_URL: `file:${TEST_DB_PATH}`,
-    },
-    stdio: "pipe",
-  });
+  execSync(
+    `bunx drizzle-kit push --force --dialect sqlite --schema ./src/repos/schema.ts --url "file:${TEST_DB_PATH}"`,
+    { stdio: "pipe" },
+  );
 }
 
 /** Remove the test DB file so it doesn't persist between runs. */

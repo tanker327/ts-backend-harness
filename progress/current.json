@@ -6,10 +6,12 @@
     {
       "id": "TASK-006",
       "title": "Fix/verify test suite passes",
-      "status": "pending",
+      "status": "completed",
       "priority": 1,
       "type": "fix",
-      "notes": "drizzle-kit push may fail in vitest global setup. Run bun run test, diagnose failures, fix global-setup.ts if needed. Stop Hook gates nothing if tests don't pass."
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "turso dialect fails with local file URLs in drizzle-kit push. Fixed by using --dialect sqlite with explicit params in global-setup.ts. 3 test files, 6 tests pass."
     },
     {
       "id": "TASK-007",
