@@ -23,7 +23,8 @@
     "format": "bunx biome format --write .",
     "init": "bash scripts/init.sh",
     "quality": "bun run scripts/update-quality.ts",
-    "harness-metrics": "bun run scripts/update-harness-metrics.ts"
+    "harness-metrics": "bun run scripts/update-harness-metrics.ts",
+    "db:migrate": "bash scripts/migrate.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
