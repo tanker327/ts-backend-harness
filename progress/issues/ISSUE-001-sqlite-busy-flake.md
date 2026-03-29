@@ -1,6 +1,6 @@
 # ISSUE-001: SQLITE_BUSY flake in parallel e2e tests
 
-## Status: open
+## Status: fixed
 ## Severity: non-blocker (intermittent, does not block any task)
 ## First seen: 2026-03-29
 
@@ -43,3 +43,8 @@ SQLITE_BUSY: database is locked
 3. **Add WAL mode** — `PRAGMA journal_mode=WAL` allows concurrent reads + single writer with less locking
 4. **Retry on SQLITE_BUSY** — configure `busy_timeout` pragma (quick fix but masks the real issue)
 5. **Split vitest config** — separate configs for unit vs e2e with different concurrency settings
+
+## Fix applied (2026-03-29)
+Applied options 3 + 4 combined:
+- `src/config/db.ts`: for local `file:` databases, executes `PRAGMA journal_mode=WAL` and `PRAGMA busy_timeout=5000` after client creation. WAL allows concurrent reads while a write is in progress; busy_timeout makes SQLite retry internally for up to 5 seconds instead of immediately throwing SQLITE_BUSY.
+- `tests/e2e/global-setup.ts`: applies the same pragmas to the test database after schema push, so WAL mode is active before any parallel test files run. Also cleans up `-wal` and `-shm` files in teardown.
