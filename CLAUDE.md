@@ -23,6 +23,7 @@
 - Tests: tests/
 
 ## Rules (MUST follow)
+- When a user raises an improvement or fix, ask whether to implement it now or add it to progress tasks for later — let the user decide
 - One feature per task — do not bundle unrelated changes
 - Before implementing any change, consider if it is an architectural decision — if yes, create or update the ADR first, then implement
 - Additional rules auto-load from .claude/rules/ based on file context
