@@ -1,11 +1,35 @@
 {
-  "last_scanned": "2026-03-22",
+  "last_scanned": "2026-03-29",
   "layers": {
-    "types": { "coverage": 0, "lint_violations": 0, "notes": "Placeholder layer" },
-    "config": { "coverage": 0, "lint_violations": 0, "notes": "env.ts, db.ts, queue.ts" },
-    "repos": { "coverage": 0, "lint_violations": 0, "notes": "schema.ts defined" },
-    "services": { "coverage": 0, "lint_violations": 0, "notes": "ai.ts stub" },
-    "providers": { "coverage": 0, "lint_violations": 0, "notes": "auth.ts, logger.ts" },
-    "routes": { "coverage": 0, "lint_violations": 0, "notes": "health.ts with OpenAPI" }
+    "types": {
+      "coverage": 0,
+      "lint_violations": 0,
+      "notes": ""
+    },
+    "config": {
+      "coverage": 44,
+      "lint_violations": 0,
+      "notes": ""
+    },
+    "repos": {
+      "coverage": 67,
+      "lint_violations": 0,
+      "notes": ""
+    },
+    "services": {
+      "coverage": 0,
+      "lint_violations": 0,
+      "notes": ""
+    },
+    "providers": {
+      "coverage": 100,
+      "lint_violations": 0,
+      "notes": ""
+    },
+    "routes": {
+      "coverage": 100,
+      "lint_violations": 0,
+      "notes": ""
+    }
   }
 }

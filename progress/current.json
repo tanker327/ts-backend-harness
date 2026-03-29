@@ -47,11 +47,13 @@
     {
       "id": "TASK-010",
       "title": "Automate quality scores measurement",
-      "status": "pending",
+      "status": "completed",
       "priority": 5,
       "type": "chore",
       "depends_on": ["TASK-006"],
-      "notes": "scores.json is all zeros, 8 days stale. Create scripts/update-quality.ts — run vitest --coverage, parse JSON, count biome violations per layer, write scores.json. Plan: progress/features/quality-scores-automation.md"
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created scripts/update-quality.ts — runs vitest --coverage, parses json-summary, counts biome violations per layer. Added 'quality' script to package.json. Plan: progress/features/quality-scores-automation.md"
     },
     {
       "id": "TASK-011",

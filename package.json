@@ -21,7 +21,8 @@
     "test:coverage": "vitest run --coverage",
     "lint": "bunx biome check .",
     "format": "bunx biome format --write .",
-    "init": "bash scripts/init.sh"
+    "init": "bash scripts/init.sh",
+    "quality": "bun run scripts/update-quality.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
