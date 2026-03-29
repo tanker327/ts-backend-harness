@@ -69,10 +69,12 @@
     {
       "id": "TASK-012",
       "title": "Add service unit tests (ai.ts)",
-      "status": "pending",
+      "status": "completed",
       "priority": 7,
       "type": "test",
-      "notes": "src/services/ai.ts has no tests. Add tests/unit/services/ai.test.ts. Mock Anthropic SDK, test generateText, error handling."
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Added 3 unit tests for generateText: text response, custom maxTokens, non-text response. Used vi.hoisted() for mock SDK constructor."
     },
     {
       "id": "TASK-013",
