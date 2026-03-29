@@ -98,10 +98,12 @@
     {
       "id": "TASK-015",
       "title": "Adopt worktree isolation model (ADR)",
-      "status": "pending",
+      "status": "completed",
       "priority": 10,
       "type": "arch",
-      "notes": "No isolation strategy for parallel tasks. Document in ADR: use Claude Code worktree support for one-task-per-worktree. Ref setup manual §6.3."
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created ADR-006: worktree isolation for parallel tasks. Recommends git worktrees via Claude Code's built-in support."
     },
     {
       "id": "TASK-016",
