@@ -1,0 +1,54 @@
+{
+  "project": "ts-backend-harness",
+  "last_updated": "2026-03-29T11:00:00Z",
+  "current_sprint": "v0.1.0",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Replace Hurl with Vitest e2e tests",
+      "status": "completed",
+      "priority": 1,
+      "type": "refactor",
+      "notes": "Switched to Hono app.request() for in-process e2e tests. Test DB created via drizzle-kit push in globalSetup. refs ADR-004.",
+      "completed_at": "2026-03-29",
+      "commit": "40e48dc"
+    },
+    {
+      "id": "TASK-002",
+      "title": "Add JSDoc enforcement across codebase",
+      "status": "completed",
+      "priority": 2,
+      "type": "chore",
+      "notes": "Added JSDoc to all existing files. Created PostToolUse hook (.claude/scripts/check-jsdoc.sh) to flag missing JSDoc on future edits.",
+      "subtasks": [
+        { "name": "Add JSDoc to all existing .ts files", "done": true },
+        { "name": "Create check-jsdoc.sh hook script", "done": true },
+        { "name": "Wire hook into .claude/settings.json", "done": true }
+      ],
+      "completed_at": "2026-03-29",
+      "commit": "c24c46a"
+    },
+    {
+      "id": "TASK-003",
+      "title": "Slim CLAUDE.md with path-scoped rules",
+      "status": "completed",
+      "priority": 3,
+      "type": "refactor",
+      "notes": "Moved duplicated/hook-enforced rules to .claude/rules/ with paths frontmatter. Created code-style.md. CLAUDE.md 54→40 lines.",
+      "completed_at": "2026-03-29",
+      "commit": "fc1a67b"
+    },
+    {
+      "id": "TASK-004",
+      "title": "Set up progress tracking with sprint archive",
+      "status": "completed",
+      "priority": 4,
+      "type": "chore",
+      "notes": "Migrate from root progress.json to progress/current.json + archive/. Add task management rules to CLAUDE.md. refs ADR-005.",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29"
+    }
+  ],
+  "known_issues": [],
+  "tech_debt": []
+}
