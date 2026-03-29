@@ -1,3 +1,7 @@
+---
+paths: ["tests/**", "vitest.config.ts"]
+---
+
 # Testing Strategy
 
 | Layer | Tool | Scope |

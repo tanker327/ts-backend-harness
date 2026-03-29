@@ -1,3 +1,7 @@
+---
+paths: ["src/routes/**"]
+---
+
 # API Design Rules
 
 - All routes use hono-zod-openapi for request/response validation + OpenAPI spec generation.

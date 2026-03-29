@@ -23,26 +23,12 @@
 - Tests: tests/
 
 ## Rules (MUST follow)
-- NO direct DB queries outside src/repos/
-- NO process.env outside src/config/ — use validated env config
-- NO editing biome.json / tsconfig.json / lefthook.yml
-- NO `git commit --no-verify`
-- NO `any` type — enforced by tsconfig strict
-- All new routes must have integration tests
-- Run tests before declaring any task complete
 - One feature per task — do not bundle unrelated changes
-- Every new file must have a top-level JSDoc comment explaining its purpose
-- Every exported function must have a brief JSDoc comment explaining what it does
+- Additional rules auto-load from .claude/rules/ based on file context
 
 ## Decision Records
 - ADRs: docs/adr/
 - Template: docs/adr/template.md
-
-## Detailed Guides (read when relevant)
-- Database patterns: .claude/rules/database.md
-- API design: .claude/rules/api-design.md
-- Testing strategy: .claude/rules/testing.md
-- Commit messages: .claude/rules/commit-message.md
 
 ## Session Startup (run every new session)
 1. `git pull` — pull latest from remote before starting
