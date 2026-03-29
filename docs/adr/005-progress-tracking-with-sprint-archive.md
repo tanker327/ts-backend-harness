@@ -20,9 +20,11 @@ Adopt the sprint archive strategy from the Progress Tracking Guide:
 1. Move from `progress.json` (root) to `progress/current.json` + `progress/archive/`
 2. Use the full task schema: id, title, status, priority, type, notes, subtasks, depends_on, started_at, completed_at, commit
 3. Agent reads only `progress/current.json` at session start
-4. When a sprint ends, archive completed tasks to `progress/archive/vX.X.X.json`
-5. Active tasks should not exceed 20-30
-6. Agent may update task status and subtasks, but must NOT create top-level tasks without human approval
+4. Detailed feature plans live in `progress/features/<name>.md` — only read when a task references them
+5. When a sprint ends, archive completed tasks to `progress/archive/vX.X.X.json`
+6. Active tasks should not exceed 20-30
+7. Agent may update task status and subtasks, but must NOT create top-level tasks without human approval
+8. Planning workflow: discuss → ADR → feature plan → tasks → user review → execute
 
 ## Consequences
 

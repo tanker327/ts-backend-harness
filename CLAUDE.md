@@ -33,11 +33,20 @@
 
 ## Task Management
 - Current tasks: progress/current.json — read at session start, update as you work
+- Feature plans: progress/features/<name>.md — detailed plans, only read when a task references it
 - Archived sprints: progress/archive/
 - Update task status to "in_progress" when starting, "completed" when done (add completed_at + commit)
 - You may update status, subtasks, and notes — do NOT create top-level tasks without human approval
 - If you discover needed work, note it in the current task's notes field
-- Keep notes short (1-2 sentences) — details belong in commits or ADRs
+- Keep notes short (1-2 sentences) — detailed plans go in progress/features/
+
+## Planning Workflow
+1. Discuss — align on requirements with the user
+2. ADR — create docs/adr/ entry if it's an architectural decision
+3. Feature plan — write detailed implementation plan in progress/features/<name>.md
+4. Tasks — add tasks to progress/current.json referencing the plan and ADR
+5. User reviews — get approval before starting execution
+6. Execute — work through tasks by priority order, commit with refs TASK-XXX
 
 ## Session Startup (run every new session)
 1. `git pull` — pull latest from remote before starting
