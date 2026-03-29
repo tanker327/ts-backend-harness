@@ -40,6 +40,7 @@
 - You may update status, subtasks, and notes — do NOT create top-level tasks without human approval
 - If you discover needed work, note it in the current task's notes field
 - Keep notes short (1-2 sentences) — detailed plans go in progress/features/
+- All plans MUST be created in progress/features/<name>.md inside the repo — never use ~/.claude/plans/ (not shareable with the team)
 
 ## Planning Workflow
 1. Discuss — align on requirements with the user
