@@ -2,6 +2,7 @@
  * Drizzle ORM table definitions for the SQLite database.
  * Includes Better Auth tables (users, sessions, accounts, verifications).
  */
+import type { AnySQLiteColumn } from "drizzle-orm/sqlite-core";
 import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
@@ -63,6 +64,38 @@ export const authorAccounts = sqliteTable(
     updatedAt: integer("updated_at").notNull(),
   },
   (t) => [unique("author_accounts_platform_account_id").on(t.platform, t.accountId)],
+);
+
+export const contents = sqliteTable(
+  "contents",
+  {
+    id: text("id").primaryKey(),
+    platform: text("platform").notNull(),
+    sourceId: text("source_id"),
+    url: text("url"),
+    authorAccountId: text("author_account_id").references(() => authorAccounts.id),
+    parentId: text("parent_id").references((): AnySQLiteColumn => contents.id),
+    title: text("title"),
+    text: text("text"),
+    textFormat: text("text_format").default("plain"),
+    slug: text("slug"),
+    language: text("language"),
+    contentType: text("content_type"),
+    likes: integer("likes"),
+    reposts: integer("reposts"),
+    replies: integer("replies"),
+    views: integer("views"),
+    bookmarks: integer("bookmarks"),
+    status: text("status").notNull().default("fetched"),
+    rating: integer("rating"),
+    postedAt: integer("posted_at"),
+    fetchedAt: integer("fetched_at"),
+    archivedAt: integer("archived_at"),
+    readAt: integer("read_at"),
+    meta: text("meta"),
+    rawPayload: text("raw_payload"),
+  },
+  (t) => [unique("contents_platform_source_id").on(t.platform, t.sourceId)],
 );
 
 export const verifications = sqliteTable("verifications", {
