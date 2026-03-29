@@ -108,10 +108,12 @@
     {
       "id": "TASK-016",
       "title": "Add context management rules",
-      "status": "pending",
+      "status": "completed",
       "priority": 11,
       "type": "arch",
-      "notes": "No compaction or large-output offloading policy. Create .claude/rules/context.md with guidelines: cap search results, write large output to files, summarize stale history."
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created .claude/rules/context.md with context flooding prevention, output offloading, long session hygiene, and progressive disclosure guidelines."
     },
     {
       "id": "TASK-017",
