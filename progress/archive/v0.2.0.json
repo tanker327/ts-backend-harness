@@ -1,0 +1,157 @@
+{
+  "sprint": "v0.2.0",
+  "archived_at": "2026-03-29T23:00:00Z",
+  "tasks": [
+    {
+      "id": "TASK-006",
+      "title": "Fix/verify test suite passes",
+      "status": "completed",
+      "priority": 1,
+      "type": "fix",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "turso dialect fails with local file URLs in drizzle-kit push. Fixed by using --dialect sqlite with explicit params in global-setup.ts. 3 test files, 6 tests pass."
+    },
+    {
+      "id": "TASK-007",
+      "title": "Add CI/CD pipeline (GitHub Actions)",
+      "status": "completed",
+      "priority": 2,
+      "type": "arch",
+      "depends_on": ["TASK-006"],
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Added .github/workflows/ci.yml — lint + typecheck (quality job) → test + coverage (test job) on push/PR to main. Plan: progress/features/ci-pipeline.md"
+    },
+    {
+      "id": "TASK-008",
+      "title": "Plan sprint v0.2.0 with gap analysis tasks",
+      "status": "completed",
+      "priority": 3,
+      "type": "chore",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Gap analysis of project vs harness planning docs. Identified 13 improvements, added as v0.2.0 tasks."
+    },
+    {
+      "id": "TASK-009",
+      "title": "Add scripts/init.sh startup script",
+      "status": "completed",
+      "priority": 4,
+      "type": "chore",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created scripts/init.sh — installs deps, creates .env, pushes schema, starts Redis, runs tests. Added 'init' script to package.json. Plan: progress/features/init-script.md"
+    },
+    {
+      "id": "TASK-010",
+      "title": "Automate quality scores measurement",
+      "status": "completed",
+      "priority": 5,
+      "type": "chore",
+      "depends_on": ["TASK-006"],
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created scripts/update-quality.ts — runs vitest --coverage, parses json-summary, counts biome violations per layer. Added 'quality' script to package.json. Plan: progress/features/quality-scores-automation.md"
+    },
+    {
+      "id": "TASK-011",
+      "title": "Add auth e2e tests",
+      "status": "completed",
+      "priority": 6,
+      "type": "test",
+      "depends_on": ["TASK-006"],
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Added 6 auth tests: sign-up, duplicate rejection, sign-in, wrong password, session with/without cookie. Fixed auth provider to pass schema to drizzle adapter. Plan: progress/features/auth-e2e-tests.md"
+    },
+    {
+      "id": "TASK-012",
+      "title": "Add service unit tests (ai.ts)",
+      "status": "completed",
+      "priority": 7,
+      "type": "test",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Added 3 unit tests for generateText: text response, custom maxTokens, non-text response. Used vi.hoisted() for mock SDK constructor."
+    },
+    {
+      "id": "TASK-013",
+      "title": "Document retry/loop bounding policy",
+      "status": "completed",
+      "priority": 8,
+      "type": "arch",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created .claude/rules/retry-policy.md with CI retry limits, agent self-repair bounds, test-fix cycle rules, and escalation criteria."
+    },
+    {
+      "id": "TASK-014",
+      "title": "Add author_accounts CRUD (full 6-layer flow)",
+      "status": "completed",
+      "priority": 9,
+      "type": "feat",
+      "depends_on": ["TASK-006", "TASK-011"],
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "43910e2",
+      "notes": "Full 6-layer CRUD: types, schema, repo, service, routes. 5 REST endpoints with OpenAPI. 12 e2e tests + 6 unit tests. Plan: progress/features/author-accounts.md"
+    },
+    {
+      "id": "TASK-015",
+      "title": "Adopt worktree isolation model (ADR)",
+      "status": "completed",
+      "priority": 10,
+      "type": "arch",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created ADR-006: worktree isolation for parallel tasks. Recommends git worktrees via Claude Code's built-in support."
+    },
+    {
+      "id": "TASK-016",
+      "title": "Add context management rules",
+      "status": "completed",
+      "priority": 11,
+      "type": "arch",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created .claude/rules/context.md with context flooding prevention, output offloading, long session hygiene, and progressive disclosure guidelines."
+    },
+    {
+      "id": "TASK-017",
+      "title": "Add BullMQ worker smoke test",
+      "status": "completed",
+      "priority": 12,
+      "type": "test",
+      "depends_on": ["TASK-014"],
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "a5fdbda",
+      "notes": "Created minimal worker src/services/worker.ts (ping job handler) + integration test tests/integration/worker.test.ts (2 tests: ping success, unknown type). Uses QueueEvents for job completion tracking."
+    },
+    {
+      "id": "TASK-018",
+      "title": "Set up harness effectiveness metrics",
+      "status": "completed",
+      "priority": 13,
+      "type": "chore",
+      "depends_on": ["TASK-007"],
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "d15368e",
+      "notes": "Created scripts/update-harness-metrics.ts — computes task success rate, first-pass CI success, rework rate, avg duration from progress + git history. Output: docs/quality/harness-metrics.json."
+    },
+    {
+      "id": "TASK-019",
+      "title": "Add contents CRUD (full 6-layer flow)",
+      "status": "completed",
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "d1589b4",
+      "priority": 14,
+      "type": "feat",
+      "depends_on": ["TASK-014"],
+      "notes": "Content records across platforms (posts, articles, videos, etc.). FK to author_accounts + self-referencing parent_id for threads. Plan: progress/features/contents.md"
+    }
+  ]
+}
