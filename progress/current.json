@@ -132,6 +132,15 @@
       "type": "chore",
       "depends_on": ["TASK-007"],
       "notes": "Track first-pass CI success rate, rework rate, agent task success rate. Start after CI is in place. Add simple tracking to progress/ or docs/quality/."
+    },
+    {
+      "id": "TASK-019",
+      "title": "Add contents CRUD (full 6-layer flow)",
+      "status": "pending",
+      "priority": 14,
+      "type": "feat",
+      "depends_on": ["TASK-014"],
+      "notes": "Content records across platforms (posts, articles, videos, etc.). FK to author_accounts + self-referencing parent_id for threads. Plan: progress/features/contents.md"
     }
   ],
   "known_issues": [
