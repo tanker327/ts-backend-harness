@@ -28,7 +28,9 @@ Repeat until no pending or in_progress tasks remain:
 
 3. **Implement**: Do the work described by the task.
 
-4. **Verify**: Run `/verify` (lint, typecheck, tests). If it fails, fix the issues and re-run. If verification cannot be made to pass, stop the loop and report.
+4. **Verify**: Spawn an Agent to run verification (lint → typecheck → tests). Do NOT use the `/verify` skill — skill invocations create turn boundaries that stop the task loop. Instead, launch an Agent with this prompt:
+   > Run these three checks in sequence, stopping at the first failure: 1) `bunx biome check .` 2) `bunx tsc --noEmit` 3) `bun run test`. Report pass/fail and any error output.
+   If the agent reports failure, fix the issues and re-run verification. If verification cannot be made to pass, stop the loop and report.
 
 5. **Commit**: Create a separate commit for this task following `.claude/rules/commit-message.md`:
    - Stage changed files by name (never `git add -A`, never stage `.env`)
