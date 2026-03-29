@@ -51,10 +51,28 @@ Commit all current changes following the project's commit-message conventions. D
    - NEVER use `--no-verify`.
    - If the pre-commit hook fails: fix the issue, re-stage, and create a NEW commit (never `--amend`).
 
-8. **Update progress** (only if an in-progress task was found in step 5)
+8. **Update progress + status report** (only if an in-progress task was found in step 5)
    - Get the commit hash from step 7.
    - Update the task in `progress/current.json` — set `"commit"` to that hash.
-   - Stage `progress/current.json` and create a NEW commit:
+   - **Spawn an agent** to regenerate `project-status-report.md`. Pass the verify results from step 3 so it does NOT re-run lint, typecheck, or tests. Use this prompt (fill in the `{...}` values):
+     ```
+     Regenerate the file project-status-report.md at the project root.
+     Follow the report format defined in .claude/skills/status-report/skill.md.
+
+     Verify results (already ran — do NOT re-run these):
+     - Lint: {lint_summary}
+     - Typecheck: {typecheck_result}
+     - Tests: {test_summary}
+
+     Steps:
+     1. Read progress/current.json
+     2. Run: git branch --show-current, git rev-list --count main..HEAD, git log --oneline -15
+     3. List docs/adr/*.md
+     4. Write project-status-report.md using the report format from the skill file
+     5. Do NOT stage or commit — the caller handles that
+     ```
+   - Wait for the agent to complete.
+   - Stage `progress/current.json` and `project-status-report.md`, then create a NEW commit:
      ```
      git commit -m "$(cat <<'EOF'
      chore(harness): update progress for TASK-XXX
