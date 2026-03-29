@@ -58,11 +58,13 @@
     {
       "id": "TASK-011",
       "title": "Add auth e2e tests",
-      "status": "pending",
+      "status": "completed",
       "priority": 6,
       "type": "test",
       "depends_on": ["TASK-006"],
-      "notes": "Better Auth is wired but has zero tests. Add tests/e2e/auth.test.ts — register, login, access protected route, verify JWT scoping. Plan: progress/features/auth-e2e-tests.md"
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Added 6 auth tests: sign-up, duplicate rejection, sign-in, wrong password, session with/without cookie. Fixed auth provider to pass schema to drizzle adapter. Plan: progress/features/auth-e2e-tests.md"
     },
     {
       "id": "TASK-012",
