@@ -3,7 +3,7 @@ name: start-tasks
 description: Run session startup — pull latest, verify server, then work through all pending tasks in priority order with a separate commit per task.
 ---
 
-Run the full session startup workflow, then execute every actionable task. Stop and report at any step that fails.
+Run the full session startup workflow, then execute every actionable task autonomously. Stop ONLY when no eligible tasks remain or a step fails irrecoverably. Do NOT stop between tasks — immediately continue to the next one.
 
 ## Setup
 
@@ -17,16 +17,21 @@ Run the full session startup workflow, then execute every actionable task. Stop 
 
 ## Task Loop
 
-Repeat until no pending or in_progress tasks remain:
+CRITICAL: Repeat this loop until no pending or in_progress tasks remain. After completing each task, immediately proceed to the next — do NOT pause, summarize, or wait for user input between tasks.
 
 1. **Select task** (in priority order):
    a. If any task has `"status": "in_progress"`, resume it first.
    b. Otherwise, pick the highest priority (lowest number) `"pending"` task whose `depends_on` tasks are all `"completed"`.
    c. If no eligible task exists, report that all tasks are done and stop.
 
-2. **Prepare**: Update the task's status to `"in_progress"` and set `"started_at"` to today's date in `progress/current.json` (skip if already in_progress). If the task's notes reference a feature plan in `progress/features/` or an ADR in `docs/adr/`, read those files.
+2. **Prepare**: Update the task's status to `"in_progress"` and set `"started_at"` to today's date in `progress/current.json` (skip if already in_progress). If the task's notes reference a feature plan in `progress/features/` or an ADR in `docs/adr/`, read those files and include them in the implementation prompt.
 
-3. **Implement**: Do the work described by the task.
+3. **Implement**: Spawn an Agent to do the implementation work. This keeps the main context window clean for orchestration. Give the agent a detailed prompt including:
+   - The task title and description
+   - Any feature plan or ADR content from step 2
+   - The project conventions: layer order, commit rules, test requirements
+   - Instruction to implement and leave files on disk (do NOT commit)
+   When the agent completes, briefly note what it did (1-2 sentences) — do NOT echo its full output.
 
 4. **Verify**: Spawn an Agent to run verification (lint → typecheck → tests). Do NOT use the `/verify` skill — skill invocations create turn boundaries that stop the task loop. Instead, launch an Agent with this prompt:
    > Run these three checks in sequence, stopping at the first failure: 1) `bunx biome check .` 2) `bunx tsc --noEmit` 3) `bun run test`. Report pass/fail and any error output.
@@ -47,4 +52,4 @@ Repeat until no pending or in_progress tasks remain:
    Co-Authored-By: Claude <noreply@anthropic.com>"
    ```
 
-7. **Next**: Loop back to step 1.
+7. **Next**: Go back to step 1 IMMEDIATELY. Do not summarize, do not wait. Just select the next task.
