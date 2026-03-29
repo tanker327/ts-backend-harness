@@ -51,5 +51,18 @@ Commit all current changes following the project's commit-message conventions. D
    - NEVER use `--no-verify`.
    - If the pre-commit hook fails: fix the issue, re-stage, and create a NEW commit (never `--amend`).
 
-8. **Report**
-   - Show the commit hash and message summary.
+8. **Update progress** (only if an in-progress task was found in step 5)
+   - Get the commit hash from step 7.
+   - Update the task in `progress/current.json` — set `"commit"` to that hash.
+   - Stage `progress/current.json` and create a NEW commit:
+     ```
+     git commit -m "$(cat <<'EOF'
+     chore(harness): update progress for TASK-XXX
+
+     Co-Authored-By: Claude <noreply@anthropic.com>
+     EOF
+     )"
+     ```
+
+9. **Report**
+   - Show the final commit hash and message summary.

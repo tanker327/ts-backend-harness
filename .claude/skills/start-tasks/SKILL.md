@@ -38,6 +38,11 @@ Repeat until no pending or in_progress tasks remain:
    - Include `Co-Authored-By: Claude <noreply@anthropic.com>` trailer
    - Never use `--no-verify`
 
-6. **Complete**: Update the task in `progress/current.json` — set status to `"completed"`, add `"completed_at"` date and `"commit"` hash.
+6. **Complete**: Update the task in `progress/current.json` — set status to `"completed"`, add `"completed_at"` date and `"commit"` hash (from step 5). Stage `progress/current.json` and create a separate commit:
+   ```
+   git commit -m "chore(harness): update progress for TASK-XXX
+
+   Co-Authored-By: Claude <noreply@anthropic.com>"
+   ```
 
 7. **Next**: Loop back to step 1.
