@@ -2,7 +2,7 @@
  * Drizzle ORM table definitions for the SQLite database.
  * Includes Better Auth tables (users, sessions, accounts, verifications).
  */
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {
   id: text("id").primaryKey(),
@@ -44,6 +44,26 @@ export const accounts = sqliteTable("accounts", {
   createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }).notNull(),
 });
+
+export const authorAccounts = sqliteTable(
+  "author_accounts",
+  {
+    id: text("id").primaryKey(),
+    platform: text("platform").notNull(),
+    accountId: text("account_id").notNull(),
+    accountUrl: text("account_url"),
+    handle: text("handle"),
+    name: text("name").notNull(),
+    description: text("description"),
+    avatarUrl: text("avatar_url"),
+    followers: integer("followers"),
+    isVerified: integer("is_verified", { mode: "boolean" }).notNull().default(false),
+    meta: text("meta"),
+    createdAt: integer("created_at").notNull(),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (t) => [unique("author_accounts_platform_account_id").on(t.platform, t.accountId)],
+);
 
 export const verifications = sqliteTable("verifications", {
   id: text("id").primaryKey(),

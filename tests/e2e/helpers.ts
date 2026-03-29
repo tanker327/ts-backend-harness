@@ -8,7 +8,7 @@
  * this is test infrastructure, not application code.
  */
 import { db } from "../../src/config/db.ts";
-import { users } from "../../src/repos/schema.ts";
+import { authorAccounts, users } from "../../src/repos/schema.ts";
 
 export { app } from "../../src/index.ts";
 
@@ -28,5 +28,6 @@ export async function seedTestData() {
 
 /** Remove all seeded records. Call in afterAll(). */
 export async function cleanTestData() {
+  await db.delete(authorAccounts);
   await db.delete(users);
 }
