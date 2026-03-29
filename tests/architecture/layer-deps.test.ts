@@ -1,3 +1,7 @@
+/**
+ * Structural test that enforces the 6-layer architecture dependency rule.
+ * Scans all src/ files and fails if any layer imports from a higher layer.
+ */
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { describe, expect, it } from "vitest";

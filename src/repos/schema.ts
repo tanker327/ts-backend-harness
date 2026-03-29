@@ -1,3 +1,7 @@
+/**
+ * Drizzle ORM table definitions for the SQLite database.
+ * Includes Better Auth tables (users, sessions, accounts, verifications).
+ */
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const users = sqliteTable("users", {

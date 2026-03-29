@@ -1,3 +1,6 @@
+/**
+ * BullMQ queue factory using Redis for async job processing.
+ */
 import { Queue } from "bullmq";
 import { env } from "./env.ts";
 
@@ -6,6 +9,7 @@ const connection = {
   port: env.REDIS_PORT,
 };
 
+/** Create a named BullMQ queue connected to the configured Redis instance. */
 export function createQueue(name: string) {
   return new Queue(name, { connection });
 }

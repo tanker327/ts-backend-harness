@@ -1,3 +1,7 @@
+/**
+ * Application entry point. Sets up the Hono server with middleware,
+ * auth handler, API routes, and OpenAPI/Swagger documentation.
+ */
 import { swaggerUI } from "@hono/swagger-ui";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { auth } from "./providers/auth.ts";

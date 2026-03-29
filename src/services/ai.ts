@@ -1,3 +1,7 @@
+/**
+ * Anthropic AI service using the Claude API.
+ * Provides text generation via a lazy-initialized client.
+ */
 import Anthropic from "@anthropic-ai/sdk";
 import { env } from "../config/env.ts";
 
@@ -13,6 +17,7 @@ function getClient(): Anthropic {
   return client;
 }
 
+/** Send a prompt to Claude and return the text response. */
 export async function generateText(
   prompt: string,
   options?: { maxTokens?: number },

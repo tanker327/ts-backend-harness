@@ -1,3 +1,6 @@
+/**
+ * Sanity checks that verify the Vitest test infrastructure is working.
+ */
 import { describe, expect, it } from "vitest";
 
 describe("Test suite sanity check", () => {

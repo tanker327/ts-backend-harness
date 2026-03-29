@@ -1,3 +1,7 @@
+/**
+ * Zod-validated environment configuration.
+ * All env var access in the app must go through the exported `env` object.
+ */
 import { z } from "zod/v4";
 
 const envSchema = z.object({
