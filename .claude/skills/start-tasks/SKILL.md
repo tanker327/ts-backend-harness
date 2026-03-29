@@ -22,7 +22,8 @@ CRITICAL: Repeat this loop until no pending or in_progress tasks remain. After c
 1. **Select task** (in priority order):
    a. If any task has `"status": "in_progress"`, resume it first.
    b. Otherwise, pick the highest priority (lowest number) `"pending"` task whose `depends_on` tasks are all `"completed"`.
-   c. If no eligible task exists, report that all tasks are done and stop.
+   c. If no eligible task exists, check the `known_issues` list in `progress/current.json`. If there are open issues with corresponding files in `progress/issues/`, pick the first one and treat it as the next task — read the issue file, fix it, verify, commit with `fix(scope): description` and `refs ISSUE-XXX` in the footer, then remove the entry from `known_issues`.
+   d. If no eligible tasks AND no open issues remain, report that all work is done and stop.
 
 2. **Prepare**: Update the task's status to `"in_progress"` and set `"started_at"` to today's date in `progress/current.json` (skip if already in_progress). If the task's notes reference a feature plan in `progress/features/` or an ADR in `docs/adr/`, read those files and include them in the implementation prompt.
 
