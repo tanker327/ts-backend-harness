@@ -16,11 +16,13 @@
     {
       "id": "TASK-007",
       "title": "Add CI/CD pipeline (GitHub Actions)",
-      "status": "pending",
+      "status": "completed",
       "priority": 2,
       "type": "arch",
       "depends_on": ["TASK-006"],
-      "notes": "Tier 3 feedback loop is missing. Create .github/workflows/ci.yml — lint + typecheck + test on push/PR. Plan: progress/features/ci-pipeline.md"
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Added .github/workflows/ci.yml — lint + typecheck (quality job) → test + coverage (test job) on push/PR to main. Plan: progress/features/ci-pipeline.md"
     },
     {
       "id": "TASK-008",
