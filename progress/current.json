@@ -89,11 +89,14 @@
     {
       "id": "TASK-014",
       "title": "Add author_accounts CRUD (full 6-layer flow)",
-      "status": "pending",
+      "status": "completed",
       "priority": 9,
       "type": "feat",
       "depends_on": ["TASK-006", "TASK-011"],
-      "notes": "First domain feature — author profiles across platforms (X, YouTube, etc.). Exercises all 6 layers: Types → Repos → Services → Routes + tests. Plan: progress/features/author-accounts.md"
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "commit": "43910e2",
+      "notes": "Full 6-layer CRUD: types, schema, repo, service, routes. 5 REST endpoints with OpenAPI. 12 e2e tests + 6 unit tests. Plan: progress/features/author-accounts.md"
     },
     {
       "id": "TASK-015",
