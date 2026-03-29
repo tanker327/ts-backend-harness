@@ -15,7 +15,7 @@ Commit all current changes following the project's commit-message conventions. D
    - If every changed file is markdown (`.md`), skip validation (step 3) — there is no code to break.
 
 3. **Validate** (skip for docs-only changes)
-   - Run `/verify` (lint, typecheck, tests).
+   - Spawn an Agent to run verification. Do NOT use the `/verify` skill — skill invocations create turn boundaries that halt the flow. Launch an Agent with this prompt: "Run these three checks in sequence, stopping at the first failure: 1) `bunx biome check .` 2) `bunx tsc --noEmit` 3) `bun run test`. Report pass/fail and any error output." (lint, typecheck, tests).
    - If verification fails, fix the issues and re-run `/verify`. If it still fails, stop and report — do not commit broken code.
 
 4. **Stage files**
