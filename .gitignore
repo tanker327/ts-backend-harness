@@ -39,3 +39,5 @@ drizzle/
 
 # Finder (MacOS) folder config
 .DS_Store
+
+**/*.local.*
