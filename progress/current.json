@@ -156,8 +156,7 @@
     }
   ],
   "known_issues": [
-    "drizzle-kit push may fail in vitest global-setup.ts — needs diagnosis (TASK-006)",
-    "SQLITE_BUSY flake in parallel e2e tests — see progress/issues/ISSUE-001-sqlite-busy-flake.md"
+    "drizzle-kit push may fail in vitest global-setup.ts — needs diagnosis (TASK-006)"
   ],
   "tech_debt": [
     "BullMQ queue configured but no workers exist",
