@@ -88,12 +88,12 @@
     },
     {
       "id": "TASK-014",
-      "title": "Add protected route (full 6-layer request flow)",
+      "title": "Add author_accounts CRUD (full 6-layer flow)",
       "status": "pending",
       "priority": 9,
       "type": "feat",
       "depends_on": ["TASK-006", "TASK-011"],
-      "notes": "Only /health (public) exists. Build one CRUD endpoint (e.g. /api/tasks) that exercises all 6 layers: Types → Config → Repos → Services → Providers → Routes. Plan: progress/features/protected-route.md"
+      "notes": "First domain feature — author profiles across platforms (X, YouTube, etc.). Exercises all 6 layers: Types → Repos → Services → Routes + tests. Plan: progress/features/author-accounts.md"
     },
     {
       "id": "TASK-015",

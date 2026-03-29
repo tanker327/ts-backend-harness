@@ -44,11 +44,12 @@
 
 ## Planning Workflow
 1. Discuss — align on requirements with the user
-2. ADR — create docs/adr/ entry if it's an architectural decision
-3. Feature plan — write detailed implementation plan in progress/features/<name>.md
-4. Tasks — add tasks to progress/current.json referencing the plan and ADR
-5. User reviews — get approval before starting execution
-6. Execute — work through tasks by priority order, commit with refs TASK-XXX
+2. Ask — implement now or add to progress tasks for later? Let the user decide before proceeding
+3. ADR — create docs/adr/ entry if it's an architectural decision
+4. Feature plan — write detailed implementation plan in progress/features/<name>.md
+5. Tasks — add tasks to progress/current.json referencing the plan and ADR
+6. User reviews — get approval before starting execution
+7. Execute — work through tasks by priority order, commit with refs TASK-XXX
 
 ## Session Startup (run every new session)
 1. `git pull` — pull latest from remote before starting
