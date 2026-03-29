@@ -79,10 +79,12 @@
     {
       "id": "TASK-013",
       "title": "Document retry/loop bounding policy",
-      "status": "pending",
+      "status": "completed",
       "priority": 8,
       "type": "arch",
-      "notes": "No policy for CI retries or agent self-repair loops. Add rule to .claude/rules/ or CLAUDE.md: max 3 CI retries, stop and report after 2 failed self-repair attempts."
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created .claude/rules/retry-policy.md with CI retry limits, agent self-repair bounds, test-fix cycle rules, and escalation criteria."
     },
     {
       "id": "TASK-014",
