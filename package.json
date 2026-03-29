@@ -20,7 +20,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "bunx biome check .",
-    "format": "bunx biome format --write ."
+    "format": "bunx biome format --write .",
+    "init": "bash scripts/init.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

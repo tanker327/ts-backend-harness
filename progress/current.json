@@ -37,10 +37,12 @@
     {
       "id": "TASK-009",
       "title": "Add scripts/init.sh startup script",
-      "status": "pending",
+      "status": "completed",
       "priority": 4,
       "type": "chore",
-      "notes": "Bootstrap script: install deps, create .env from .env.example if missing, run drizzle-kit push, start Redis, run smoke test. Plan: progress/features/init-script.md"
+      "started_at": "2026-03-29",
+      "completed_at": "2026-03-29",
+      "notes": "Created scripts/init.sh — installs deps, creates .env, pushes schema, starts Redis, runs tests. Added 'init' script to package.json. Plan: progress/features/init-script.md"
     },
     {
       "id": "TASK-010",
