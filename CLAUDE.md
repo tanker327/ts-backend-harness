@@ -31,6 +31,8 @@
 - All new routes must have integration tests
 - Run tests before declaring any task complete
 - One feature per task — do not bundle unrelated changes
+- Every new file must have a top-level JSDoc comment explaining its purpose
+- Every exported function must have a brief JSDoc comment explaining what it does
 
 ## Decision Records
 - ADRs: docs/adr/

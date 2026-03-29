@@ -7,6 +7,10 @@
           {
             "type": "command",
             "command": "bunx biome format --write $CLAUDE_FILE_PATH 2>/dev/null; LINT_OUTPUT=$(bunx biome check $CLAUDE_FILE_PATH 2>&1); if [ -n \"$LINT_OUTPUT\" ]; then echo '{\"decision\": \"allow\", \"hookSpecificOutput\": {\"additionalContext\": \"Biome violations found:\\n'\"$LINT_OUTPUT\"'\"}}'; else echo '{\"decision\": \"allow\"}'; fi"
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/check-jsdoc.sh"
           }
         ]
       }
