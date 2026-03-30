@@ -25,6 +25,11 @@
           {
             "type": "command",
             "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -qE '(biome\\.json|tsconfig\\.json|lefthook\\.yml)'; then echo '{\"decision\": \"block\", \"reason\": \"Modifying linter/build config is not allowed. Fix the code instead.\"}'; else echo '{\"decision\": \"allow\"}'; fi"
+          },
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PreToolUse\", \"additionalContext\": \"STOP -- Did you ask the user whether to implement now or add to progress tasks? If not, ask before proceeding.\"}}'",
+            "statusMessage": "Checking: did you ask before implementing?"
           }
         ]
       },
