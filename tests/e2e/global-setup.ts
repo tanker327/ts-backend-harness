@@ -16,11 +16,18 @@ import { createClient } from "@libsql/client";
 import IORedis from "ioredis";
 
 const TEST_DB_PATH = "./data/test.db";
+const TEST_REDIS_PORT = 6380;
 let weStartedRedis = false;
 
-/** Check if Redis is reachable on localhost:6379. */
+/** Check if the test Redis is reachable on localhost:6380. */
 async function isRedisRunning(): Promise<boolean> {
-  const client = new IORedis({ host: "localhost", port: 6379, lazyConnect: true });
+  const client = new IORedis({
+    host: "localhost",
+    port: TEST_REDIS_PORT,
+    lazyConnect: true,
+    retryStrategy: () => null,
+  });
+  client.on("error", () => {});
   try {
     await client.connect();
     await client.ping();
@@ -44,32 +51,32 @@ function isDockerRunning(): boolean {
 
 /** Start Redis via docker compose and wait until it accepts connections. */
 function startRedis() {
-  console.log("[global-setup] Redis not running — starting via docker compose...");
-  execSync("docker compose up -d redis", { stdio: "pipe" });
+  console.log("[global-setup] Test Redis not running — starting via docker compose...");
+  execSync("docker compose up -d redis-test", { stdio: "pipe" });
 
   // Wait up to 30s for Redis to be ready
   for (let i = 0; i < 30; i++) {
     try {
-      execSync("docker compose exec redis redis-cli ping", { stdio: "pipe" });
-      console.log("[global-setup] Redis is ready");
+      execSync("docker compose exec redis-test redis-cli ping", { stdio: "pipe" });
+      console.log("[global-setup] Test Redis is ready");
       return;
     } catch {
       execSync("sleep 1", { stdio: "pipe" });
     }
   }
-  throw new Error("Redis failed to start within 30 seconds");
+  throw new Error("Test Redis failed to start within 30 seconds");
 }
 
 export async function setup() {
   // --- Redis ---
   if (await isRedisRunning()) {
-    console.log("[global-setup] Redis already running");
+    console.log("[global-setup] Test Redis already running");
   } else if (isDockerRunning()) {
     startRedis();
     weStartedRedis = true;
   } else {
     console.warn(
-      "[global-setup] Redis not running and Docker unavailable — integration tests will be skipped",
+      "[global-setup] Test Redis not running and Docker unavailable — integration tests will be skipped",
     );
   }
 
@@ -91,7 +98,7 @@ export function teardown() {
   rmSync(`${TEST_DB_PATH}-shm`, { force: true });
 
   if (weStartedRedis) {
-    console.log("[global-setup] Stopping Redis...");
-    execSync("docker compose down redis", { stdio: "pipe" });
+    console.log("[global-setup] Stopping test Redis...");
+    execSync("docker compose down redis-test", { stdio: "pipe" });
   }
 }

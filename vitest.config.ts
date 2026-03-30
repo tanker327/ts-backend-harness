@@ -15,7 +15,7 @@ export default defineConfig({
       BETTER_AUTH_URL: "http://localhost:3000",
       NODE_ENV: "test",
       REDIS_HOST: "localhost",
-      REDIS_PORT: "6379",
+      REDIS_PORT: "6380",
     },
     coverage: {
       provider: "v8",

@@ -3,15 +3,21 @@
  * Skips automatically when Redis is not reachable.
  */
 
-import { QueueEvents } from "bullmq";
+import type { Queue, QueueEvents, Worker } from "bullmq";
 import IORedis from "ioredis";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { createQueue, redisConnection } from "../../src/config/queue.ts";
-import { createDefaultWorker } from "../../src/services/worker.ts";
+
+const TEST_REDIS_PORT = Number(process.env.REDIS_PORT ?? 6379);
 
 /** Quick check if Redis is reachable before running the suite. */
 async function canReachRedis(): Promise<boolean> {
-  const client = new IORedis({ host: "localhost", port: 6379, lazyConnect: true });
+  const client = new IORedis({
+    host: "localhost",
+    port: TEST_REDIS_PORT,
+    lazyConnect: true,
+    retryStrategy: () => null,
+  });
+  client.on("error", () => {});
   try {
     await client.connect();
     await client.ping();
@@ -26,19 +32,27 @@ async function canReachRedis(): Promise<boolean> {
 const redisAvailable = await canReachRedis();
 
 describe.skipIf(!redisAvailable)("BullMQ worker smoke test", () => {
-  const queue = createQueue("default");
-  const queueEvents = new QueueEvents("default", { connection: redisConnection });
-  const worker = createDefaultWorker();
+  let queue: Queue;
+  let queueEvents: QueueEvents;
+  let worker: Worker;
 
   beforeAll(async () => {
+    const { QueueEvents: QE } = await import("bullmq");
+    const { createQueue, redisConnection } = await import("../../src/config/queue.ts");
+    const { createDefaultWorker } = await import("../../src/services/worker.ts");
+
+    queue = createQueue("default");
+    queueEvents = new QE("default", { connection: redisConnection });
+    worker = createDefaultWorker();
+
     await queueEvents.waitUntilReady();
     await worker.waitUntilReady();
   });
 
   afterAll(async () => {
-    await worker.close();
-    await queueEvents.close();
-    await queue.close();
+    await worker?.close();
+    await queueEvents?.close();
+    await queue?.close();
   });
 
   it("processes a ping job and returns pong", async () => {
