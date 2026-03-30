@@ -1,13 +1,22 @@
 {
   "project": "ts-backend-harness",
-  "last_updated": "2026-03-29T23:00:00Z",
+  "last_updated": "2026-03-30T00:00:00Z",
   "current_sprint": "v0.2.1",
-  "tasks": [],
+  "tasks": [
+    {
+      "id": "TASK-014",
+      "title": "Worker: show clean error warning when Redis is unavailable",
+      "description": "Update worker-entry.ts to detect Redis connection failure on startup and log a clear, human-readable error instead of crashing with an unhandled exception.",
+      "status": "completed",
+      "started_at": "2026-03-30",
+      "completed_at": "2026-03-30",
+      "commit": "91eae85",
+      "priority": "medium",
+      "depends_on": []
+    }
+  ],
   "known_issues": [
     "drizzle-kit push may fail in vitest global-setup.ts — needs diagnosis (TASK-006)"
   ],
-  "tech_debt": [
-    "BullMQ queue configured but no workers exist",
-    "Quality scores (docs/quality/scores.json) not automated"
-  ]
+  "tech_debt": ["Quality scores (docs/quality/scores.json) not automated"]
 }
