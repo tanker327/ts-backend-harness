@@ -24,7 +24,8 @@
     "init": "bash scripts/init.sh",
     "quality": "bun run scripts/update-quality.ts",
     "harness-metrics": "bun run scripts/update-harness-metrics.ts",
-    "db:migrate": "bash scripts/migrate.sh"
+    "db:migrate": "bash scripts/migrate.sh",
+    "worker": "bun run src/worker-entry.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
