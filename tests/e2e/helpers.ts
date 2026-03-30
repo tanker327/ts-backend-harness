@@ -8,7 +8,14 @@
  * this is test infrastructure, not application code.
  */
 import { db } from "../../src/config/db.ts";
-import { authorAccounts, contents, users } from "../../src/repos/schema.ts";
+import {
+  accounts,
+  authorAccounts,
+  contents,
+  sessions,
+  users,
+  verifications,
+} from "../../src/repos/schema.ts";
 
 export { app } from "../../src/index.ts";
 
@@ -30,5 +37,8 @@ export async function seedTestData() {
 export async function cleanTestData() {
   await db.delete(contents);
   await db.delete(authorAccounts);
+  await db.delete(sessions);
+  await db.delete(accounts);
+  await db.delete(verifications);
   await db.delete(users);
 }

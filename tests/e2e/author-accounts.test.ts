@@ -5,7 +5,7 @@
  */
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { db } from "../../src/config/db.ts";
-import { authorAccounts } from "../../src/repos/schema.ts";
+import { authorAccounts, contents } from "../../src/repos/schema.ts";
 import type { AuthorAccount } from "../../src/types/author-account.ts";
 import { app, cleanTestData, seedTestData } from "./helpers.ts";
 
@@ -22,6 +22,7 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
+  await db.delete(contents);
   await db.delete(authorAccounts);
 });
 
