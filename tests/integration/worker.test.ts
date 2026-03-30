@@ -1,13 +1,31 @@
 /**
  * Smoke test for BullMQ worker integration with Redis.
- * Requires a running Redis instance on REDIS_HOST:REDIS_PORT.
+ * Skips automatically when Redis is not reachable.
  */
+
 import { QueueEvents } from "bullmq";
+import IORedis from "ioredis";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createQueue, redisConnection } from "../../src/config/queue.ts";
 import { createDefaultWorker } from "../../src/services/worker.ts";
 
-describe("BullMQ worker smoke test", () => {
+/** Quick check if Redis is reachable before running the suite. */
+async function canReachRedis(): Promise<boolean> {
+  const client = new IORedis({ host: "localhost", port: 6379, lazyConnect: true });
+  try {
+    await client.connect();
+    await client.ping();
+    await client.quit();
+    return true;
+  } catch {
+    client.disconnect();
+    return false;
+  }
+}
+
+const redisAvailable = await canReachRedis();
+
+describe.skipIf(!redisAvailable)("BullMQ worker smoke test", () => {
   const queue = createQueue("default");
   const queueEvents = new QueueEvents("default", { connection: redisConnection });
   const worker = createDefaultWorker();
