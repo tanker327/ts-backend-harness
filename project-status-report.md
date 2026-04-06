@@ -1,38 +1,25 @@
 # Project Status Report
 
 **Project:** ts-backend-harness
-**Date:** 2026-03-29
-**Branch:** sprint/v0.2.0 (30 commits ahead of main)
-**Sprint:** v0.2.0
+**Date:** 2026-03-30
+**Branch:** main
+**Sprint:** v0.2.1
 
 ## Health Check
 
 | Check      | Status |
 |------------|--------|
-| Lint       | Pass (46 files checked, no issues) |
+| Lint       | Pass (51 files checked, 1 warning, no errors) |
 | Typecheck  | Pass |
-| Tests      | Fail (10 files, 56 tests — 54 passed, 2 skipped; 1 file failed: worker.test.ts — Redis not running) |
+| Tests      | Pass (11 files, 70 tests — 70 passed) |
 
 ## Sprint Progress
 
-**Completed: 14 / 14 tasks (100%)**
+**Completed: 1 / 1 tasks (100%)**
 
 | ID | Title | Status | Type |
 |----|-------|--------|------|
-| TASK-006 | Fix/verify test suite passes | Completed | fix |
-| TASK-007 | Add CI/CD pipeline (GitHub Actions) | Completed | arch |
-| TASK-008 | Plan sprint v0.2.0 with gap analysis tasks | Completed | chore |
-| TASK-009 | Add scripts/init.sh startup script | Completed | chore |
-| TASK-010 | Automate quality scores measurement | Completed | chore |
-| TASK-011 | Add auth e2e tests | Completed | test |
-| TASK-012 | Add service unit tests (ai.ts) | Completed | test |
-| TASK-013 | Document retry/loop bounding policy | Completed | arch |
-| TASK-014 | Add author_accounts CRUD (full 6-layer flow) | Completed | feat |
-| TASK-015 | Adopt worktree isolation model (ADR) | Completed | arch |
-| TASK-016 | Add context management rules | Completed | arch |
-| TASK-017 | Add BullMQ worker smoke test | Completed | test |
-| TASK-018 | Set up harness effectiveness metrics | Completed | chore |
-| TASK-019 | Add contents CRUD (full 6-layer flow) | Completed | feat |
+| TASK-014 | Worker: show clean error warning when Redis is unavailable | Completed | fix |
 
 ## Pending Tasks — Dependency Chain
 
@@ -62,8 +49,9 @@ All tasks completed. No pending work in this sprint.
 | tests/e2e/auth.test.ts | 6 |
 | tests/e2e/author-accounts.test.ts | 12 |
 | tests/e2e/contents.test.ts | 15 |
-| tests/integration/worker.test.ts | 2 (skipped — Redis unavailable) |
-| **Total** | **56** |
+| tests/integration/worker.test.ts | 2 |
+| tests/unit/services/generate-title.test.ts | 14 |
+| **Total** | **70** |
 
 ## Known Issues & Tech Debt
 
@@ -71,25 +59,18 @@ All tasks completed. No pending work in this sprint.
 - drizzle-kit push may fail in vitest global-setup.ts — needs diagnosis (TASK-006)
 
 **Tech Debt:**
-- BullMQ queue configured but no workers exist
 - Quality scores (docs/quality/scores.json) not automated
 
-## Recent Commit History (sprint/v0.2.0)
+## Recent Commit History (v0.2.1)
 
 ```
-72c8b95 chore(harness): resolve ISSUE-001 and update known_issues
-df3ab70 fix(config): resolve SQLITE_BUSY flake with WAL mode and busy_timeout
-e3680fe arch(harness): add known_issues fallback to start-tasks loop
-2aff363 Merge branch 'feat/status-report-skill' into sprint/v0.2.0
-a5edd0c arch(harness): add issue tracking policy and log SQLITE_BUSY flake
-8d1fcf4 arch(harness): add /status-report skill and integrate into /commit
-242e1b9 chore(harness): update progress for TASK-019
-d1589b4 feat(routes): add contents CRUD endpoints with full 6-layer flow
-670d6c1 chore(harness): update progress for TASK-018
-d15368e chore(harness): add harness effectiveness metrics script
-e6cb26e chore(harness): update progress for TASK-017
-a5fdbda test(services): add BullMQ worker smoke test
-c253f36 arch(harness): improve start-tasks loop continuity and context efficiency
-3821b6a arch(harness): fix turn boundary in commit skill verify step
-b360b00 arch(harness): use Agent instead of Skill for verify in start-tasks loop
+d44691b chore(harness): update progress for TASK-014
+91eae85 fix(services): show clean error when Redis unavailable in worker
+f45cc99 arch(harness): add ask-before-implementing rule and PreToolUse hook
+0b7da25 feat(services): add generate-title worker job and standalone entrypoint
+c68d348 fix(infra): isolate test redis on port 6380 to avoid dev conflicts
+48edbb6 fix(harness): auto-start redis for tests and skip when unavailable
+910f57c fix(harness): fix e2e test cleanup order and disable file parallelism
+970fa83 fix(infra): add redis service container to ci test job
+99f1b52 docs(harness): update README with missing scripts, ADRs, and corrections
 ```
