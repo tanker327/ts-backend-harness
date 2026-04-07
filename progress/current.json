@@ -18,11 +18,13 @@
       "id": "TASK-015",
       "title": "Migrate database from SQLite to PostgreSQL",
       "description": "Replace SQLite/LibSQL with PostgreSQL using postgres-js driver. Convert schema to pgTable with native timestamps, add Docker PG services, update env config, repos, services, types, tests, and Better Auth adapter. No data migration needed.",
-      "status": "pending",
+      "status": "completed",
+      "started_at": "2026-04-06",
+      "completed_at": "2026-04-06",
+      "commit": "7f7e684",
       "priority": "high",
       "depends_on": [],
-      "plan": "progress/features/sqlite-to-postgresql.md",
-      "notes": "ADR-007 needed. ~16 files to change. Plan reviewed 2026-04-06."
+      "plan": "progress/features/sqlite-to-postgresql.md"
     }
   ],
   "known_issues": [
