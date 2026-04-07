@@ -2,7 +2,7 @@
  * E2E tests for the health and OpenAPI endpoints.
  *
  * Uses Hono's built-in app.request() to call endpoints in-process
- * against a test SQLite database created by global-setup.ts.
+ * against a test PostgreSQL database created by global-setup.ts.
  */
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { app, cleanTestData, seedTestData } from "./helpers.ts";

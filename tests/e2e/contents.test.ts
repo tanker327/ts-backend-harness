@@ -1,7 +1,7 @@
 /**
  * E2E tests for the contents CRUD endpoints.
  *
- * Tests all five REST operations against a test SQLite database.
+ * Tests all five REST operations against a test PostgreSQL database.
  */
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { db } from "../../src/config/db.ts";

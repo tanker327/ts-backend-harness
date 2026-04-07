@@ -2,7 +2,7 @@
  * Vitest global setup/teardown for e2e tests.
  *
  * Runs once before all test files:
- * - Ensures Redis is running (starts via docker compose if needed)
+ * - Ensures Redis is running (starts via docker compose -f docker-compose.test.yml if needed)
  * - Ensures PostgreSQL test container is running
  * - Pushes Drizzle schema to the test database
  *
@@ -40,7 +40,10 @@ async function isRedisRunning(): Promise<boolean> {
 /** Check if the test PostgreSQL is reachable on localhost:5433. */
 function isPostgresRunning(): boolean {
   try {
-    execSync(`docker compose exec postgres-test pg_isready -U postgres`, { stdio: "pipe" });
+    execSync(
+      `docker compose -f docker-compose.test.yml exec postgres-test pg_isready -U postgres`,
+      { stdio: "pipe" },
+    );
     return true;
   } catch {
     return false;
@@ -57,15 +60,19 @@ function isDockerRunning(): boolean {
   }
 }
 
-/** Start Redis via docker compose and wait until it accepts connections. */
+/** Start Redis via docker compose -f docker-compose.test.yml and wait until it accepts connections. */
 function startRedis() {
-  console.log("[global-setup] Test Redis not running — starting via docker compose...");
-  execSync("docker compose up -d redis-test", { stdio: "pipe" });
+  console.log(
+    "[global-setup] Test Redis not running — starting via docker compose -f docker-compose.test.yml...",
+  );
+  execSync("docker compose -f docker-compose.test.yml up -d redis-test", { stdio: "pipe" });
 
   // Wait up to 30s for Redis to be ready
   for (let i = 0; i < 30; i++) {
     try {
-      execSync("docker compose exec redis-test redis-cli ping", { stdio: "pipe" });
+      execSync("docker compose -f docker-compose.test.yml exec redis-test redis-cli ping", {
+        stdio: "pipe",
+      });
       console.log("[global-setup] Test Redis is ready");
       return;
     } catch {
@@ -75,15 +82,20 @@ function startRedis() {
   throw new Error("Test Redis failed to start within 30 seconds");
 }
 
-/** Start PostgreSQL test container via docker compose and wait until it accepts connections. */
+/** Start PostgreSQL test container via docker compose -f docker-compose.test.yml and wait until it accepts connections. */
 function startPostgres() {
-  console.log("[global-setup] Test PostgreSQL not running — starting via docker compose...");
-  execSync("docker compose up -d postgres-test", { stdio: "pipe" });
+  console.log(
+    "[global-setup] Test PostgreSQL not running — starting via docker compose -f docker-compose.test.yml...",
+  );
+  execSync("docker compose -f docker-compose.test.yml up -d postgres-test", { stdio: "pipe" });
 
   // Wait up to 30s for PostgreSQL to be ready
   for (let i = 0; i < 30; i++) {
     try {
-      execSync("docker compose exec postgres-test pg_isready -U postgres", { stdio: "pipe" });
+      execSync(
+        "docker compose -f docker-compose.test.yml exec postgres-test pg_isready -U postgres",
+        { stdio: "pipe" },
+      );
       console.log("[global-setup] Test PostgreSQL is ready");
       return;
     } catch {
@@ -129,11 +141,11 @@ export async function setup() {
 export function teardown() {
   if (weStartedPostgres) {
     console.log("[global-setup] Stopping test PostgreSQL...");
-    execSync("docker compose down postgres-test", { stdio: "pipe" });
+    execSync("docker compose -f docker-compose.test.yml down postgres-test", { stdio: "pipe" });
   }
 
   if (weStartedRedis) {
     console.log("[global-setup] Stopping test Redis...");
-    execSync("docker compose down redis-test", { stdio: "pipe" });
+    execSync("docker compose -f docker-compose.test.yml down redis-test", { stdio: "pipe" });
   }
 }
