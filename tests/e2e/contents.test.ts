@@ -60,7 +60,7 @@ describe("POST /contents", () => {
     expect(body.text).toBe("Hello world from X");
     expect(body.status).toBe("fetched");
     expect(body.id).toBeDefined();
-    expect(body.fetchedAt).toBeTypeOf("number");
+    expect(body.fetchedAt).toBeTypeOf("string");
   });
 
   it("defaults status to fetched and sets fetchedAt", async () => {
@@ -71,8 +71,8 @@ describe("POST /contents", () => {
     expect(res.status).toBe(201);
     const body = (await res.json()) as Content;
     expect(body.status).toBe("fetched");
-    expect(body.fetchedAt).toBeTypeOf("number");
-    expect(body.fetchedAt).toBeGreaterThan(0);
+    expect(body.fetchedAt).toBeTypeOf("string");
+    expect(new Date(body.fetchedAt as unknown as string).getTime()).toBeGreaterThan(0);
   });
 
   it("rejects duplicate platform + sourceId with 409", async () => {

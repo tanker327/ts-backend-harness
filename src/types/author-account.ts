@@ -33,8 +33,8 @@ export const authorAccountSchema = z.object({
   followers: z.number().int().nullable(),
   isVerified: z.boolean(),
   meta: z.string().nullable(),
-  createdAt: z.number().int(),
-  updatedAt: z.number().int(),
+  createdAt: z.coerce.date(),
+  updatedAt: z.coerce.date(),
 });
 
 export type CreateAuthorAccount = z.input<typeof createAuthorAccountSchema>;

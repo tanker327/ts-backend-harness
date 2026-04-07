@@ -1,5 +1,5 @@
 /**
- * Better Auth provider with Drizzle adapter for SQLite.
+ * Better Auth provider with Drizzle adapter for PostgreSQL.
  * Handles email/password authentication.
  */
 import { betterAuth } from "better-auth";
@@ -9,7 +9,7 @@ import { env } from "../config/env.ts";
 import * as schema from "../repos/schema.ts";
 
 export const auth = betterAuth({
-  database: drizzleAdapter(db, { provider: "sqlite", schema, usePlural: true }),
+  database: drizzleAdapter(db, { provider: "pg", schema, usePlural: true }),
   secret: env.BETTER_AUTH_SECRET,
   baseURL: env.BETTER_AUTH_URL,
   emailAndPassword: {

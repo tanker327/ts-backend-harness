@@ -8,7 +8,7 @@ import type { CreateContent, UpdateContent } from "../types/content.ts";
 /** Create a new content with a generated UUID. Defaults status to 'fetched' and fetchedAt to now. */
 export async function create(data: CreateContent) {
   const id = crypto.randomUUID();
-  const now = Math.floor(Date.now() / 1000);
+  const now = new Date();
   return repo.createContent(id, data, now);
 }
 

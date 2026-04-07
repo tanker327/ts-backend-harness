@@ -8,7 +8,7 @@ import type { CreateAuthorAccount, UpdateAuthorAccount } from "../types/author-a
 /** Create a new author account with a generated UUID and timestamps. */
 export async function create(data: CreateAuthorAccount) {
   const id = crypto.randomUUID();
-  const now = Math.floor(Date.now() / 1000);
+  const now = new Date();
   return repo.createAuthorAccount(id, data, now);
 }
 
@@ -29,7 +29,7 @@ export async function list(opts?: { platform?: string }) {
 
 /** Update an author account by ID. Returns the updated row or null. */
 export async function update(id: string, data: UpdateAuthorAccount) {
-  const now = Math.floor(Date.now() / 1000);
+  const now = new Date();
   return repo.updateAuthorAccount(id, data, now);
 }
 

@@ -1,7 +1,7 @@
 /**
  * E2E tests for the author accounts CRUD endpoints.
  *
- * Tests all five REST operations against a test SQLite database.
+ * Tests all five REST operations against a test PostgreSQL database.
  */
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { db } from "../../src/config/db.ts";
@@ -57,7 +57,7 @@ describe("POST /author-accounts", () => {
     expect(body.name).toBe("Test Creator");
     expect(body.isVerified).toBe(true);
     expect(body.id).toBeDefined();
-    expect(body.createdAt).toBeTypeOf("number");
+    expect(body.createdAt).toBeTypeOf("string");
   });
 
   it("rejects duplicate platform + accountId with 409", async () => {
@@ -148,7 +148,9 @@ describe("PUT /author-accounts/:id", () => {
     const body = (await res.json()) as AuthorAccount;
     expect(body.name).toBe("Updated Name");
     expect(body.followers).toBe(5000);
-    expect(body.updatedAt).toBeGreaterThanOrEqual(created.updatedAt);
+    expect(new Date(body.updatedAt).getTime()).toBeGreaterThanOrEqual(
+      new Date(created.updatedAt).getTime(),
+    );
   });
 
   it("returns 404 for non-existent ID", async () => {

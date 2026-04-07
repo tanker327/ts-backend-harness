@@ -147,7 +147,13 @@ export function registerAuthorAccountRoutes(app: OpenAPIHono) {
         err instanceof Error
           ? `${err.message} ${(err as { cause?: Error }).cause?.message ?? ""}`
           : "";
-      if (errMsg.includes("UNIQUE constraint") || errMsg.includes("SQLITE_CONSTRAINT_UNIQUE")) {
+      const cause = err instanceof Error ? (err as { cause?: { code?: string } }).cause : null;
+      const isPgDuplicate = cause?.code === "23505";
+      if (
+        isPgDuplicate ||
+        errMsg.includes("UNIQUE constraint") ||
+        errMsg.includes("SQLITE_CONSTRAINT_UNIQUE")
+      ) {
         return c.json(
           {
             error: {

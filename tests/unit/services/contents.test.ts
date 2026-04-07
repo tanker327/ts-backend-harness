@@ -37,8 +37,8 @@ const fakeRow = {
   bookmarks: 5,
   status: "fetched",
   rating: null,
-  postedAt: 1000,
-  fetchedAt: 1000,
+  postedAt: new Date(1000000),
+  fetchedAt: new Date(1000000),
   archivedAt: null,
   readAt: null,
   meta: null,
@@ -53,15 +53,15 @@ describe("contents service", () => {
     expect(mockRepo.createContent).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ platform: "x", sourceId: "123456" }),
-      expect.any(Number),
+      expect.any(Date),
     );
     // Verify the UUID is a valid format
     const callArgs = mockRepo.createContent.mock.calls[0];
     expect(callArgs?.[0]).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
-    // Verify timestamp is reasonable (epoch seconds)
-    const timestamp = callArgs?.[2] as number;
-    expect(timestamp).toBeGreaterThan(1000000000);
-    expect(timestamp).toBeLessThan(10000000000);
+    // Verify timestamp is a reasonable Date
+    const timestamp = callArgs?.[2] as Date;
+    expect(timestamp).toBeInstanceOf(Date);
+    expect(timestamp.getTime()).toBeGreaterThan(1000000000000);
   });
 
   it("create() defaults status to fetched", async () => {

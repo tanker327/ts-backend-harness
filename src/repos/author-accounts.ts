@@ -8,7 +8,7 @@ import type { CreateAuthorAccount, UpdateAuthorAccount } from "../types/author-a
 import { authorAccounts } from "./schema.ts";
 
 /** Insert a new author account and return the created row. */
-export async function createAuthorAccount(id: string, data: CreateAuthorAccount, now: number) {
+export async function createAuthorAccount(id: string, data: CreateAuthorAccount, now: Date) {
   const [row] = await db
     .insert(authorAccounts)
     .values({
@@ -55,7 +55,7 @@ export async function listAuthorAccounts(opts?: { platform?: string }) {
 }
 
 /** Update an author account by ID and return the updated row. */
-export async function updateAuthorAccount(id: string, data: UpdateAuthorAccount, now: number) {
+export async function updateAuthorAccount(id: string, data: UpdateAuthorAccount, now: Date) {
   const [row] = await db
     .update(authorAccounts)
     .set({ ...data, updatedAt: now })

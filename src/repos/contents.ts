@@ -8,7 +8,7 @@ import type { CreateContent, UpdateContent } from "../types/content.ts";
 import { contents } from "./schema.ts";
 
 /** Insert a new content row and return the created row. */
-export async function createContent(id: string, data: CreateContent, now: number) {
+export async function createContent(id: string, data: CreateContent, now: Date) {
   const [row] = await db
     .insert(contents)
     .values({

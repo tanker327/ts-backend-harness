@@ -32,8 +32,8 @@ const fakeRow = {
   followers: null,
   isVerified: false,
   meta: null,
-  createdAt: 1000,
-  updatedAt: 1000,
+  createdAt: new Date(1000000),
+  updatedAt: new Date(1000000),
 };
 
 describe("author-accounts service", () => {
@@ -44,7 +44,7 @@ describe("author-accounts service", () => {
     expect(mockRepo.createAuthorAccount).toHaveBeenCalledWith(
       expect.any(String),
       expect.objectContaining({ platform: "youtube", accountId: "UC1234" }),
-      expect.any(Number),
+      expect.any(Date),
     );
   });
 
@@ -74,7 +74,7 @@ describe("author-accounts service", () => {
     expect(mockRepo.updateAuthorAccount).toHaveBeenCalledWith(
       "test-uuid",
       { name: "Updated" },
-      expect.any(Number),
+      expect.any(Date),
     );
   });
 

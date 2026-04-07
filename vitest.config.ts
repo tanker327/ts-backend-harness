@@ -8,8 +8,7 @@ export default defineConfig({
     include: ["tests/**/*.test.ts"],
     globalSetup: ["tests/e2e/global-setup.ts"],
     env: {
-      DATABASE_URL: "file:./data/test.db",
-      DATABASE_AUTH_TOKEN: "",
+      DATABASE_URL: "postgresql://postgres:postgres@localhost:5433/test",
       JWT_SECRET: "test-secret-that-is-at-least-32-characters-long",
       BETTER_AUTH_SECRET: "test-auth-secret-at-least-32-characters-long",
       BETTER_AUTH_URL: "http://localhost:3000",
