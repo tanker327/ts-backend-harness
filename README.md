@@ -8,7 +8,7 @@ A TypeScript backend starter template built for **AI Agent-first development** w
 |----------|------|
 | Runtime | [Bun](https://bun.sh) |
 | Framework | [Hono](https://hono.dev) + [zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi) |
-| Database | [Drizzle ORM](https://orm.drizzle.team) + [Turso](https://turso.tech) (SQLite) |
+| Database | [Drizzle ORM](https://orm.drizzle.team) + [PostgreSQL](https://www.postgresql.org) (via postgres-js) |
 | Auth | [Better Auth](https://www.better-auth.com) |
 | Validation | [Zod](https://zod.dev) |
 | Queue | [BullMQ](https://bullmq.io) + Redis |
@@ -27,7 +27,7 @@ bun run init
 # Or manually:
 bun install
 cp .env.example .env        # then edit secrets
-docker compose up -d         # start Redis (required for BullMQ)
+docker compose up -d         # start PostgreSQL + Redis
 bun run db:migrate           # generate and apply database migrations
 bun run dev                  # start dev server with hot reload
 # Server: http://localhost:3000
@@ -117,8 +117,8 @@ Claude Code hooks also **block** modifications to config files (`biome.json`, `t
 │   └── e2e/                  # E2E endpoint tests (app.request)
 ├── scripts/                  # Bootstrap, migration, quality scripts
 ├── progress/                 # Task tracking + feature plans
-├── data/                     # Local SQLite database (gitignored)
-├── docker-compose.yml        # Redis for BullMQ
+├── docker-compose.yml        # Dev services (PostgreSQL + Redis)
+├── docker-compose.test.yml   # Test services (isolated PG + Redis)
 ├── drizzle.config.ts         # Drizzle Kit migration config
 └── biome.json / tsconfig.json / lefthook.yml
 ```
@@ -142,11 +142,12 @@ Claude Code hooks also **block** modifications to config files (`biome.json`, `t
 | 004 | [E2E tests via app.request](docs/adr/004-e2e-tests-via-app-request.md) |
 | 005 | [Progress tracking with sprint archive](docs/adr/005-progress-tracking-with-sprint-archive.md) |
 | 006 | [Worktree isolation for parallel tasks](docs/adr/006-worktree-isolation-for-parallel-tasks.md) |
+| 007 | [Migrate SQLite to PostgreSQL](docs/adr/007-migrate-sqlite-to-postgresql.md) |
 
 ## Prerequisites
 
 - [Bun](https://bun.sh) >= 1.0
-- [Docker](https://www.docker.com) (for Redis)
+- [Docker](https://www.docker.com) (for PostgreSQL + Redis)
 - [Lefthook](https://github.com/evilmartians/lefthook) (`brew install lefthook`)
 
 ## License
