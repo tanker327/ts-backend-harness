@@ -10,9 +10,9 @@
 - Format: `bunx biome format --write .`
 
 ## Architecture
-- Layer order: Types -> Config -> Repos -> Services -> Providers -> Routes
-- Each layer may only import from layers to its left
-- See: docs/architecture.md
+- Layer order: Types -> Config -> (Repos | Providers) -> Services -> Routes
+- Each layer may only import from lower tiers; same-tier imports forbidden except `providers -> repos`
+- See: docs/adr/005-six-layer-architecture.md
 
 ## Key Directories
 - Types/Schemas: src/types/

@@ -10,9 +10,14 @@ const LAYERS: Record<string, number> = {
   types: 1,
   config: 2,
   repos: 3,
+  providers: 3,
   services: 4,
-  providers: 5,
-  routes: 6,
+  routes: 5,
+};
+
+// Same-tier imports are forbidden unless listed here. See ADR-005.
+const SAME_TIER_ALLOW: Record<string, string[]> = {
+  providers: ["repos"],
 };
 
 function getImports(filePath: string): string[] {
@@ -72,11 +77,21 @@ describe("Architecture Layer Dependencies", () => {
       for (const imp of getImports(file)) {
         const targetLayer = getTargetLayer(imp);
         if (!targetLayer) continue;
+        if (targetLayer === sourceLayer) continue;
         const targetOrder = LAYERS[targetLayer] ?? 0;
         if (targetOrder > sourceOrder) {
           violations.push(
             `${path.relative(srcDir, file)} (${sourceLayer}) imports from ${targetLayer}`,
           );
+          continue;
+        }
+        if (targetOrder === sourceOrder) {
+          const allowed = SAME_TIER_ALLOW[sourceLayer] ?? [];
+          if (!allowed.includes(targetLayer)) {
+            violations.push(
+              `${path.relative(srcDir, file)} (${sourceLayer}) imports from peer-tier ${targetLayer} (not on allowlist)`,
+            );
+          }
         }
       }
     }
@@ -87,10 +102,11 @@ describe("Architecture Layer Dependencies", () => {
           `Found ${violations.length} layer violation(s):`,
           ...violations.map((v) => `  - ${v}`),
           "",
-          "WHY: Each layer may only import from layers with a lower number.",
-          "     Types(1) -> Config(2) -> Repos(3) -> Services(4) -> Providers(5) -> Routes(6)",
-          "FIX: Move shared logic to a lower layer, or use Providers for cross-cutting concerns.",
-          "REF: docs/architecture.md",
+          "WHY: Each layer may only import from lower tiers. See ADR-005.",
+          "     types(1) -> config(2) -> (repos | providers)(3) -> services(4) -> routes(5)",
+          "     Same-tier imports are forbidden except: providers -> repos.",
+          "FIX: Move shared logic to a lower tier, or route cross-cutting concerns via providers.",
+          "REF: docs/adr/005-six-layer-architecture.md",
         ].join("\n"),
       );
     }
