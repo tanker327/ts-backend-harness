@@ -62,6 +62,16 @@
           }
         ]
       }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/session-end.sh"
+          }
+        ]
+      }
     ]
   }
 }

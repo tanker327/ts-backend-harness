@@ -36,6 +36,7 @@
 - Current tasks: progress/current.json — read at session start, update as you work
 - Feature plans: progress/features/<name>.md — detailed plans, only read when a task references it
 - Archived sprints: progress/archive/
+- Narrative log: `progress/journal.md` — read the top entries on session start. Append a short entry at session end capturing what was tried, what surprised you, what a future session should know. Append-only; never rewrite past entries.
 - Update task status to "in_progress" when starting, "completed" when done (add completed_at + commit)
 - You may update status, subtasks, and notes — do NOT create top-level tasks without human approval
 - If you discover needed work, note it in the current task's notes field
