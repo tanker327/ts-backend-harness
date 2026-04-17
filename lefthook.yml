@@ -11,3 +11,5 @@ pre-commit:
     typecheck:
       glob: "*.{ts,tsx}"
       run: bunx tsc --noEmit
+    adr-check:
+      run: bash scripts/check-adr-required.sh
