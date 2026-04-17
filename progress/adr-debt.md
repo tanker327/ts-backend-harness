@@ -9,7 +9,12 @@ Tracks architectural decisions that slipped through without an ADR (per ADR-002)
 
 ## Open debt
 
-_None._ The 2026-04-17 backfill round (ADR-008 through ADR-039) cleared the gaps identified by `/adr-audit`.
+| Commit / Task | Trigger | Reason for skip |
+|---|---|---|
+| TASK-016 | Testing boundary change (Stop hook redesign) | User pre-approved skip during batch `/start-tasks` run on 2026-04-17; backfill ADR after implementation. |
+| TASK-017 | New cross-cutting SessionStart pattern (init.sh + hook) | User pre-approved skip during batch `/start-tasks` run on 2026-04-17; backfill ADR after implementation. |
+| TASK-018 | New cross-cutting GC pattern (/repo-gc command) | User pre-approved skip during batch `/start-tasks` run on 2026-04-17; backfill ADR after implementation. |
+| TASK-019 | New cross-cutting narrative-state pattern (progress/journal.md) | User pre-approved skip during batch `/start-tasks` run on 2026-04-17; backfill ADR after implementation. |
 
 ## Resolved debt (for history)
 
