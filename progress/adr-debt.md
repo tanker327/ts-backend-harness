@@ -9,7 +9,7 @@ Tracks architectural decisions that slipped through without an ADR (per ADR-002)
 
 ## Open debt
 
-_None._ The 2026-04-17 backfill round (ADR-008 through ADR-033) cleared the outstanding gaps identified by `/adr-audit`.
+_None._ The 2026-04-17 backfill round (ADR-008 through ADR-039) cleared the gaps identified by `/adr-audit`.
 
 ## Resolved debt (for history)
 
@@ -41,3 +41,9 @@ Decisions originally introduced without an ADR, backfilled on 2026-04-17:
 | Health check endpoint convention | ADR-031 |
 | CORS deferred until a browser client exists | ADR-032 |
 | API versioning deferred (unversioned paths) | ADR-033 |
+| Request ID / correlation deferred | ADR-034 |
+| DB transaction boundaries in services | ADR-035 |
+| Graceful shutdown — worker only for now | ADR-036 |
+| Pagination deferred | ADR-037 |
+| Test fixture strategy — shared helpers, no factories | ADR-038 |
+| Module singleton provider wiring | ADR-039 |

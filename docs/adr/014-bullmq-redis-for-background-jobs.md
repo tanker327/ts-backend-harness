@@ -26,7 +26,7 @@ Use **BullMQ** for background job orchestration, backed by **Redis**.
 - Worker logic lives in `src/services/worker.ts`
 - The worker process is started separately via `src/worker-entry.ts` (`bun run worker`) — not in the HTTP server process
 - Redis runs as a Docker Compose service in both dev and test compose files (ADR-021)
-- Graceful degradation: if Redis is unavailable at worker startup, the worker logs a clear error instead of crashing (TASK-014)
+- Graceful degradation: if Redis is unavailable at worker startup, the worker logs a clear error instead of crashing
 
 ## Consequences
 

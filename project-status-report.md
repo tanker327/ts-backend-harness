@@ -62,6 +62,12 @@ All tasks completed. No pending work in this sprint.
 | ADR-031 | Health check endpoint convention |
 | ADR-032 | CORS deferred until a browser client exists |
 | ADR-033 | API versioning deferred — unversioned paths |
+| ADR-034 | Request ID / correlation deferred |
+| ADR-035 | DB transaction boundaries in services |
+| ADR-036 | Graceful shutdown — worker only for now |
+| ADR-037 | Pagination deferred |
+| ADR-038 | Test fixture strategy — shared helpers, no factories |
+| ADR-039 | Module singleton provider wiring |
 
 ## Test Coverage
 

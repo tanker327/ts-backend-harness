@@ -16,7 +16,7 @@ Use Hono's built-in `app.request()` for e2e tests:
 
 1. All e2e tests live in `tests/e2e/*.test.ts` as Vitest tests
 2. `vitest.config.ts` injects test env vars (DATABASE_URL, secrets) via `test.env` before module singletons initialize
-3. `tests/e2e/global-setup.ts` creates a test SQLite DB with `drizzle-kit push` and tears it down after all tests
+3. `tests/e2e/global-setup.ts` provisions the test PostgreSQL DB with `drizzle-kit push` and tears it down after all tests (see ADR-029 for lifecycle details)
 4. No new dependencies required
 
 ## Consequences
