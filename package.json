@@ -21,6 +21,7 @@
     "test:coverage": "vitest run --coverage",
     "lint": "bunx biome check .",
     "format": "bunx biome format --write .",
+    "bootstrap": "bash scripts/bootstrap.sh",
     "init": "bash scripts/init.sh",
     "quality": "bun run scripts/update-quality.ts",
     "harness-metrics": "bun run scripts/update-harness-metrics.ts",
