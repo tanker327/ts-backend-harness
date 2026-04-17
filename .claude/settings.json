@@ -48,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if [ -z \"$STOP_HOOK_ACTIVE\" ]; then export STOP_HOOK_ACTIVE=1; RESULT=$(bun run test 2>&1); EXIT_CODE=$?; if [ $EXIT_CODE -ne 0 ]; then echo \"{\\\"continue\\\": false, \\\"stopReason\\\": \\\"Tests failed. Fix before stopping:\\n$RESULT\\\"}\"; else echo '{\"continue\": true}'; fi; else echo '{\"continue\": true}'; fi"
+            "command": "bash .claude/scripts/stop-gate.sh"
           }
         ]
       }
