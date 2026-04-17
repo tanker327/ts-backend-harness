@@ -43,10 +43,13 @@
       "id": "TASK-019",
       "title": "Add progress/journal.md append-only narrative channel alongside JSON task state",
       "description": "Introduce a free-form narrative channel to complement the structured JSON state. Today progress/current.json captures what's true (status, commits, deps) but has nowhere for 'what I tried, what I learned, what surprised me' — the context Anthropic's two-channel recipe (§3.1) calls out as essential for long-running multi-session agents. Plan: (1) create progress/journal.md with a header explaining format (append-only, reverse-chronological, ~3-6 bullets per session, cap ~150 lines before rotation); (2) update CLAUDE.md §Task Management to point agents at it on session start and ask them to append a short entry on session end; (3) optional SessionEnd hook that appends a date-stamped stub the agent fills in; (4) rotation rule — when file exceeds 150 lines, move oldest entries to progress/archive/journal-YYYY-MM.md. Entries should capture rejected approaches, surprises, operational gotchas (e.g. 'test DB on 5433 slow to accept connections on cold start'), cross-session hand-off notes. Do NOT rewrite old entries — strictly append. Keep it separate from commit messages (which are keyed to changes, not reasoning) and per-task `notes` field (capped at 1-2 sentences per current rule).",
-      "status": "pending",
+      "status": "completed",
+      "started_at": "2026-04-17",
+      "completed_at": "2026-04-17",
+      "commit": "848b9b1",
       "priority": "medium",
       "depends_on": [],
-      "notes": "Sourced from harness-engineering-research.md review (2026-04-17). Anthropic two-channel state pattern §3.1. Especially useful given /start-tasks batch execution and ADR-024 worktree parallelism."
+      "notes": "Sourced from harness-engineering-research.md review (2026-04-17). Anthropic two-channel state pattern §3.1. Especially useful given /start-tasks batch execution and ADR-024 worktree parallelism. ADR skipped per user pre-approval; logged in progress/adr-debt.md for backfill."
     },
     {
       "id": "TASK-014",
