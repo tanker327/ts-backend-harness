@@ -31,10 +31,13 @@
       "id": "TASK-018",
       "title": "Add /repo-gc garbage-collection slash command for periodic harness entropy sweep",
       "description": "Create .claude/commands/repo-gc.md that runs a two-pass sweep. Pass 1 (deterministic, cheap): knip/ts-prune for unused exports; broken relative links in docs/**/*.md; orphan .claude/rules/*.md not referenced anywhere; progress/current.json tasks marked completed >30d with no commit hash; progress/issues/ items marked fixed >14d as archive candidates. Pass 2 (LLM-driven, semantic): for each ADR in docs/adr/, scan src/ for violations (e.g., ADR-013 userId-from-JWT → grep for req.body.userId / params.userId); verify docs/**/*.md cited paths + function signatures still exist; flag route handlers deviating from the modal pattern (missing OpenAPI spec, missing zod validation); flag CLAUDE.md instruction-count drift above ~150. Output: one summary report + append real ADR violations to progress/adr-debt.md. Start as on-demand slash command; promote to scheduled remote agent (via `schedule` skill) once false-positive rate is low. Include a suppression mechanism (e.g., `.gc-ignore` or inline comments) so repeat false positives don't tank signal.",
-      "status": "pending",
+      "status": "completed",
+      "started_at": "2026-04-17",
+      "completed_at": "2026-04-17",
+      "commit": "5663f0b",
       "priority": "medium",
       "depends_on": [],
-      "notes": "Sourced from harness-engineering-research.md review (2026-04-17). OpenAI GC agent pattern §3.2.4. Closes existing tech_debt item (quality scores not automated) and turns progress/adr-debt.md from a log into a backpressure loop."
+      "notes": "Sourced from harness-engineering-research.md review (2026-04-17). OpenAI GC agent pattern §3.2.4. Closes existing tech_debt item (quality scores not automated) and turns progress/adr-debt.md from a log into a backpressure loop. ADR skipped per user pre-approval; logged in progress/adr-debt.md for backfill."
     },
     {
       "id": "TASK-019",
