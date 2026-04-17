@@ -1,4 +1,4 @@
-# ADR-006: Worktree Isolation for Parallel Tasks
+# ADR-024: Worktree Isolation for Parallel Tasks
 
 - **Status**: Accepted
 - **Date**: 2026-03-29

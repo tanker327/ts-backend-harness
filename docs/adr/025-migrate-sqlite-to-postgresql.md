@@ -1,4 +1,4 @@
-# ADR-007: Migrate SQLite to PostgreSQL
+# ADR-025: Migrate SQLite to PostgreSQL
 
 - **Status**: Accepted
 - **Date**: 2026-04-06

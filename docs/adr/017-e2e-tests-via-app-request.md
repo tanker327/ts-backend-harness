@@ -1,4 +1,4 @@
-# ADR-004: E2E tests via Hono app.request() instead of Hurl
+# ADR-017: E2E tests via Hono app.request() instead of Hurl
 
 - **Status**: Accepted
 - **Date**: 2026-03-29

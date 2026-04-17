@@ -627,7 +627,7 @@ export type Env = z.infer<typeof envSchema>;
 
 > Zod validates at startup — missing config causes immediate fail-fast. All other files access config via `import { env } from "@/config/env"`. Direct `process.env` usage is forbidden.
 
-**ADR-002**: Record "All environment variables validated via Zod schema; direct process.env access is prohibited."
+**ADR-008**: Record "All environment variables validated via Zod schema; direct process.env access is prohibited."
 
 ---
 
@@ -656,7 +656,7 @@ bun add better-auth
 - Request Flow: `CORS → Rate Limit → JWT → Route Handler`
 - userId extracted from `c.get('jwtPayload')` and injected into all DB queries
 
-**ADR-003**: Record "userId is always extracted from JWT; never trust client-provided identity."
+**ADR-013**: Record "userId is always extracted from JWT; never trust client-provided identity."
 
 ---
 

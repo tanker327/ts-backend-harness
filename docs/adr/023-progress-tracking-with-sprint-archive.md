@@ -1,4 +1,4 @@
-# ADR-005: Progress tracking with sprint archive strategy
+# ADR-023: Progress tracking with sprint archive strategy
 
 - **Status**: Accepted
 - **Date**: 2026-03-29

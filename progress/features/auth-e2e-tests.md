@@ -1,6 +1,6 @@
 # Feature Plan: Auth E2E Tests (TASK-011)
 
-refs ADR-003 (userId from JWT only), ADR-004 (e2e via app.request)
+refs ADR-013 (userId from JWT only), ADR-017 (e2e via app.request)
 
 ## Goal
 Verify the Better Auth integration works end-to-end: registration, login, session handling, and JWT-scoped access.

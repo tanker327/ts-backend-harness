@@ -28,7 +28,7 @@ Add Tier 3 feedback loop — automated lint + typecheck + test on every push and
 - When BullMQ tests are added later, add Redis service container
 
 ### ADR
-- Create ADR-006: CI pipeline enforces quality on every push
+- ADR-026: CI pipeline enforces quality on every push
 - Enforcement: GitHub branch protection requires CI to pass before merge
 
 ## Verification

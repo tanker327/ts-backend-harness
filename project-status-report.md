@@ -30,11 +30,38 @@ All tasks completed. No pending work in this sprint.
 | ADR | Title |
 |-----|-------|
 | ADR-001 | Adopt harness engineering |
-| ADR-002 | Env vars validated via Zod |
-| ADR-003 | userId from JWT only |
-| ADR-004 | E2E tests via app request |
-| ADR-005 | Progress tracking with sprint archive |
-| ADR-006 | Worktree isolation for parallel tasks |
+| ADR-002 | ADR trigger checklist |
+| ADR-003 | Bun as runtime |
+| ADR-004 | TypeScript strict mode |
+| ADR-005 | Six-layer architecture |
+| ADR-006 | Hono as web framework |
+| ADR-007 | Contract-first API with Zod + OpenAPI |
+| ADR-008 | Env vars validated via Zod |
+| ADR-009 | PostgreSQL as database |
+| ADR-010 | Drizzle ORM |
+| ADR-011 | Repo pattern — routes never touch DB |
+| ADR-012 | Better Auth library choice |
+| ADR-013 | userId from JWT only |
+| ADR-014 | BullMQ + Redis for background jobs |
+| ADR-015 | Pino structured logging |
+| ADR-016 | Vitest as test runner |
+| ADR-017 | E2E tests via app.request() |
+| ADR-018 | Test pyramid and boundaries |
+| ADR-019 | Biome for lint and format |
+| ADR-020 | Lefthook pre-commit gates |
+| ADR-021 | Docker Compose for local services |
+| ADR-022 | AI provider isolation |
+| ADR-023 | Progress tracking with sprint archive |
+| ADR-024 | Worktree isolation for parallel tasks |
+| ADR-025 | Migrate SQLite to PostgreSQL |
+| ADR-026 | CI pipeline via GitHub Actions |
+| ADR-027 | Standardized error response format |
+| ADR-028 | Drizzle migration workflow |
+| ADR-029 | Test DB/Redis lifecycle via globalSetup |
+| ADR-030 | Session storage via Better Auth Drizzle adapter |
+| ADR-031 | Health check endpoint convention |
+| ADR-032 | CORS deferred until a browser client exists |
+| ADR-033 | API versioning deferred — unversioned paths |
 
 ## Test Coverage
 

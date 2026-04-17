@@ -1,4 +1,4 @@
-# ADR-003: userId Extracted from JWT Only
+# ADR-013: userId Extracted from JWT Only
 
 - **Status**: Accepted
 - **Date**: 2026-03-22

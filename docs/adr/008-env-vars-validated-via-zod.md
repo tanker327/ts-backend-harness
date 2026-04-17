@@ -1,4 +1,4 @@
-# ADR-002: Environment Variables Validated via Zod Schema
+# ADR-008: Environment Variables Validated via Zod Schema
 
 - **Status**: Accepted
 - **Date**: 2026-03-22

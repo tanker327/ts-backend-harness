@@ -1,7 +1,7 @@
 # Feature: Migrate SQLite to PostgreSQL
 
 **Task**: TASK-015
-**ADR**: ADR-007 (to be created)
+**ADR**: ADR-025
 **Status**: Planned
 
 ## Context

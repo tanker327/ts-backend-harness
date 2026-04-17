@@ -1,6 +1,6 @@
 # Feature Plan: Protected Route — Full 6-Layer Flow (TASK-014)
 
-refs ADR-001 (6-layer architecture), ADR-003 (userId from JWT)
+refs ADR-005 (6-layer architecture), ADR-013 (userId from JWT)
 
 ## Goal
 Build one CRUD endpoint that exercises all 6 architectural layers end-to-end, demonstrating the full request flow: `Request → CORS → Rate Limit → JWT → Route → Service → Repo → DB`
@@ -19,7 +19,7 @@ Build one CRUD endpoint that exercises all 6 architectural layers end-to-end, de
 - Drizzle schema: `tasks` table (id, title, description, status, userId, createdAt, updatedAt)
 - Drizzle migration
 - CRUD functions: findByUserId, findById, create, update, delete
-- All queries scoped by userId (ADR-003)
+- All queries scoped by userId (ADR-013)
 
 **Layer 4 — Services** (`src/services/task.service.ts`):
 - Business logic: createTask, getTask, listTasks, updateTask, deleteTask

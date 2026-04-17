@@ -40,11 +40,11 @@ refs TASK-005
 
 fix(repos): scope task queries by userId from JWT
 
-refs ADR-003, TASK-008
+refs ADR-013, TASK-008
 
 test(architecture): add layer dependency structural test
 arch(harness): add Stop Hook to gate agent completion on test failure
-docs(adr): ADR-003 userId always extracted from JWT payload
+docs(adr): ADR-013 userId always extracted from JWT payload
 chore(infra): add Redis service to docker-compose.yml
 refactor(services): extract task validation into shared helper
 ```
@@ -56,5 +56,5 @@ refactor(services): extract task validation into shared helper
 - Scope MUST be one of the six layer names or `harness`/`infra`
 - If the commit relates to a tracked task, add `refs TASK-XXX` in the footer
 - If the commit enforces or documents an architectural decision, add `refs ADR-XXX` in the footer
-- Both can be combined: `refs ADR-003, TASK-008`
+- Both can be combined: `refs ADR-013, TASK-008`
 - Every `arch` commit should have a corresponding ADR or test that mechanically enforces it
