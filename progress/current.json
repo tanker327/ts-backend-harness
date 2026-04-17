@@ -19,10 +19,13 @@
       "id": "TASK-017",
       "title": "Add scripts/init.sh session smoke check wired to SessionStart hook",
       "description": "Create scripts/init.sh that verifies the dev environment is healthy before a session starts coding. Checks: (1) docker compose services postgres + redis are up and healthy, start them if not; (2) Postgres reachable on 5432; (3) `bunx drizzle-kit check` reports no pending migration diff; (4) Redis reachable via redis-cli ping; (5) env validates (import src/config/env succeeds — Zod runs); (6) app boots — start server in background, curl /healthz, kill; (7) optional fast tsc --noEmit. Success: single `✓ harness healthy` line. Failure: specific failing check + suggested fix. Wire into .claude/settings.json SessionStart hook so the output injects as additionalContext — makes the check enforced, not hoped-for. Consider a TTL so UserPromptSubmit does not pay the cost every turn. Likely needs an ADR (new cross-cutting session-start pattern per ADR-002 trigger checklist).",
-      "status": "pending",
+      "status": "completed",
+      "started_at": "2026-04-17",
+      "completed_at": "2026-04-17",
+      "commit": "b744aa0",
       "priority": "medium",
       "depends_on": [],
-      "notes": "Sourced from harness-engineering-research.md review (2026-04-17). Anthropic Initializer/Coding Agent pattern §3.1. Especially valuable post-SQLite→Postgres migration (TASK-015) and for ADR-024 worktree isolation."
+      "notes": "Sourced from harness-engineering-research.md review (2026-04-17). Anthropic Initializer/Coding Agent pattern §3.1. Especially valuable post-SQLite→Postgres migration (TASK-015) and for ADR-024 worktree isolation. ADR skipped per user pre-approval; logged in progress/adr-debt.md for backfill."
     },
     {
       "id": "TASK-018",
