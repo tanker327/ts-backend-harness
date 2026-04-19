@@ -18,8 +18,6 @@ vi.mock("../../../src/config/env.ts", () => ({
   env: {
     ANTHROPIC_API_KEY: "test-key",
     DATABASE_URL: "file:./data/test.db",
-    DATABASE_AUTH_TOKEN: "",
-    JWT_SECRET: "test-secret-that-is-at-least-32-characters-long",
     BETTER_AUTH_SECRET: "test-auth-secret-at-least-32-characters-long",
     BETTER_AUTH_URL: "http://localhost:3000",
     NODE_ENV: "test",

@@ -9,7 +9,6 @@ export default defineConfig({
     globalSetup: ["tests/e2e/global-setup.ts"],
     env: {
       DATABASE_URL: "postgresql://postgres:postgres@localhost:5433/test",
-      JWT_SECRET: "test-secret-that-is-at-least-32-characters-long",
       BETTER_AUTH_SECRET: "test-auth-secret-at-least-32-characters-long",
       BETTER_AUTH_URL: "http://localhost:3000",
       NODE_ENV: "test",
