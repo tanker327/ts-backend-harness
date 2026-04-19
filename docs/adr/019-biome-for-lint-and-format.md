@@ -22,6 +22,17 @@ Use **Biome** for both lint and format.
 - Format: `bunx biome format --write .`
 - Pre-commit (via Lefthook — ADR-020) runs both on staged files
 
+### Active rule customization
+
+On top of Biome's `recommended` rule set, the project enables:
+
+- **`suspicious.noExplicitAny: error`** — bans `any` outright. Agents reach for `any` to make type errors go away; promoting this to an error forces them to express the real type or use `unknown` + narrowing. Pairs with `tsconfig.json` `strict: true` (ADR-004).
+- **`complexity.noForEach: warn`** — nudges toward `for…of` / array methods that play better with `await` and early `return`. Warn (not error) because legitimate `forEach` cases exist.
+
+Formatter: 2-space indent, 100-column line width. These are settled defaults — not up for debate per change; changing them is an ADR trigger (ADR-002).
+
+Adding, removing, or re-severity-ing a rule is itself an architectural decision (it changes what the harness catches) and requires an ADR.
+
 ## Consequences
 
 ### Positive

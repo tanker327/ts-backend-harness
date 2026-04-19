@@ -1,8 +1,8 @@
 # ADR-001: Adopt Harness Engineering + TypeScript Backend Stack
 
-- **Status**: Accepted
+- **Status**: Accepted. Specific enforcement mechanisms formalized later — see ADR-005 (layer structural test) and ADR-020 (lefthook pre-commit gates).
 - **Date**: 2026-03-22
-- **Enforced by**: lefthook.yml, .claude/settings.json, tests/architecture/
+- **Enforced by**: Harness infrastructure — pre-commit hooks, agent hooks, and structural tests, each formalized in a follow-up ADR.
 
 ## Context
 
